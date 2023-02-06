@@ -4,7 +4,14 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <ImageCard />
+      <div className='grid grid-rows-3 grid-flow-col gap-4'>
+        <ImageCard />
+        <ImageCard />
+        <ImageCard />
+        <ImageCard />
+        <ImageCard />
+        <ImageCard />
+      </div>
     </>
   );
 }
