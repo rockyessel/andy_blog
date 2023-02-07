@@ -1,4 +1,9 @@
-import { ImageCard, ImageTextCard, ImageTextDescCard } from '@/components';
+import {
+  Hero,
+  ImageCard,
+  ImageTextCard,
+  ImageTextDescCard,
+} from '@/components';
 
 export default function Home() {
   const data = [
@@ -62,6 +67,7 @@ export default function Home() {
 
   return (
     <main className='px-6 flex flex-col gap-5 my-16'>
+      <Hero />
       <div>
         <ul className='grid grid-cols-3 gap-4'>
           {data?.slice(0, 5)?.map((data, index) => (
@@ -74,7 +80,7 @@ export default function Home() {
           <div>
             <h2>Recent</h2>
             <ul className='flex flex-col divide-y-[1px]'>
-              {data?.map((data, index) => (
+              {data?.slice(0, 3)?.map((data, index) => (
                 <ImageTextDescCard key={index} data={data} />
               ))}
             </ul>
@@ -83,7 +89,7 @@ export default function Home() {
           <div>
             <h2>Anime</h2>
             <ul className='grid grid-cols-1 divide-y-[1px]'>
-              {data?.map((data, index) => (
+              {data?.slice(0, 3)?.map((data, index) => (
                 <ImageTextDescCard key={index} data={data} />
               ))}
             </ul>
@@ -94,7 +100,7 @@ export default function Home() {
           <div>
             <h3>TRENDING</h3>
             <ul className='grid grid-cols-1 divide-y-[1px]'>
-              {data?.map((data, index) => (
+              {data?.slice(0, 3)?.map((data, index) => (
                 <ImageTextCard key={index} data={data} />
               ))}
             </ul>

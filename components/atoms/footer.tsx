@@ -96,7 +96,9 @@ const Footer = () => {
 
         <form className='flex flex-col gap-2'>
           <div className='flex items-center gap-2'>
+            <label className='sr-only'>Email</label>
             <input
+              title='Email'
               className='max-w-xl py-2 px-4 h-10 white-black/25 bg-transparent border border-white/25 outline-none'
               type='text'
             />
@@ -105,7 +107,8 @@ const Footer = () => {
             </button>
           </div>
           <div className='max-w-sm'>
-            <input type='checkbox' />{' '}
+            <label className='sr-only'>Checkbox</label>
+            <input title='checkbox' type='checkbox' />{' '}
             <label>
               I agree that my submitted data is being collected and stored.
             </label>
