@@ -1,1 +1,1 @@
-const SendEmail = async () => {};
+export const SendEmail = async () => {};
