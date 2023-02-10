@@ -7,7 +7,6 @@ import {
 import { data } from '@/utils/services';
 
 export default function Home() {
-
   return (
     <main className='px-6 flex flex-col gap-5 my-16'>
       <Hero />
@@ -18,7 +17,7 @@ export default function Home() {
           ))}
         </ul>
       </div>
-      <section className='flex justify-between'>
+      <section className='flex flex-wrap justify-between'>
         <section className='flex flex-col gap-5'>
           <div>
             <h2>Recent</h2>

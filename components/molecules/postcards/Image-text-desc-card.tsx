@@ -4,7 +4,7 @@ import React from 'react';
 const ImageTextDescCard = ({ data }: { data: any }) => {
   return (
     <div className='py-5'>
-      <div className='flex max-w-3xl border border-gray-200 rounded-md shadow'>
+      <div className='flex flex-col md:flex-row max-w-3xl border border-gray-200 rounded-md shadow'>
         <Image
           className='rounded-l-md'
           width={300}

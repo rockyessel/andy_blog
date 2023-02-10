@@ -13,7 +13,7 @@ const ImageTextCard = ({ data }: { data: any }) => {
           alt=''
         />
         <h3 className='capitalize w-fit font-bold text-md px-1 py-2'>
-        {data?.name}
+          {data?.name}
         </h3>
       </div>
     </div>

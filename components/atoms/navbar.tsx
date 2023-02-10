@@ -26,7 +26,7 @@ const Navbar = () => {
   };
 
   return (
-    <header className='w-full sticky top-0 h-20 bg-slate-900 py-5 text-white px-10'>
+    <header className='w-full z-[2] sticky top-0 h-20 bg-slate-900 py-5 text-white px-10'>
       <section className='flex items-center justify-between'>
         <div className='flex items-center gap-4'>
           <div className='text-4xl'>Logo</div>
