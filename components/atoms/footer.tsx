@@ -8,7 +8,7 @@ import {
 
 const Footer = () => {
   return (
-    <footer className='w-full h-auto bg-slate-900 px-6 py-10 text-white flex gap-20'>
+    <footer className='w-full h-auto bg-slate-900 px-6 py-10 text-white flex flex-wrap gap-20'>
       <section className='flex flex-col gap-5'>
         <div className='flex flex-col gap-4'>
           <span className='text-4xl font-extrabold'>Logo</span>

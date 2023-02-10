@@ -10,10 +10,6 @@ module.exports = {
   ],
   theme: {
     extend: {},
-    screens: {
-      min_screen: { min: '1112px' },
-      max_screen: { max: '1112px' },
-    },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/typography')],
 };

@@ -4,66 +4,9 @@ import {
   ImageTextCard,
   ImageTextDescCard,
 } from '@/components';
+import { data } from '@/utils/services';
 
 export default function Home() {
-  const data = [
-    {
-      category: 'Movies',
-      estimated_time: '7',
-      author: 'brennan klein',
-      name: 'Potential Stranger Things Season 5 Release Window Suggested By Star',
-      description: `Hogwarts Legacy beautifully recreates the world of Harry Potter and fills it with quirky characters, tense combat, and a huge amount of collectibles.`,
-      image: '/deadpool.png',
-    },
-    {
-      category: 'Movies',
-      estimated_time: '7',
-      author: 'brennan klein',
-      name: 'Potential Stranger Things Season 5 Release Window Suggested By Star',
-      description: `Hogwarts Legacy beautifully recreates the world of Harry Potter and fills it with quirky characters, tense combat, and a huge amount of collectibles.`,
-      image: '/deadpool.png',
-    },
-    {
-      category: 'Movies',
-      estimated_time: '7',
-      author: 'brennan klein',
-      name: 'Potential Stranger Things Season 5 Release Window Suggested By Star',
-      description: `Hogwarts Legacy beautifully recreates the world of Harry Potter and fills it with quirky characters, tense combat, and a huge amount of collectibles.`,
-      image: '/deadpool.png',
-    },
-    {
-      category: 'Movies',
-      estimated_time: '7',
-      author: 'brennan klein',
-      name: 'Potential Stranger Things Season 5 Release Window Suggested By Star',
-      description: `Hogwarts Legacy beautifully recreates the world of Harry Potter and fills it with quirky characters, tense combat, and a huge amount of collectibles.`,
-      image: '/deadpool.png',
-    },
-    {
-      category: 'Movies',
-      estimated_time: '7',
-      author: 'brennan klein',
-      name: 'Potential Stranger Things Season 5 Release Window Suggested By Star',
-      description: `Hogwarts Legacy beautifully recreates the world of Harry Potter and fills it with quirky characters, tense combat, and a huge amount of collectibles.`,
-      image: '/deadpool.png',
-    },
-    {
-      category: 'Movies',
-      estimated_time: '7',
-      author: 'brennan klein',
-      name: 'Potential Stranger Things Season 5 Release Window Suggested By Star',
-      description: `Hogwarts Legacy beautifully recreates the world of Harry Potter and fills it with quirky characters, tense combat, and a huge amount of collectibles.`,
-      image: '/deadpool.png',
-    },
-    {
-      category: 'Movies',
-      estimated_time: '7',
-      author: 'brennan klein',
-      name: 'Potential Stranger Things Season 5 Release Window Suggested By Star',
-      description: `Hogwarts Legacy beautifully recreates the world of Harry Potter and fills it with quirky characters, tense combat, and a huge amount of collectibles.`,
-      image: '/deadpool.png',
-    },
-  ];
 
   return (
     <main className='px-6 flex flex-col gap-5 my-16'>

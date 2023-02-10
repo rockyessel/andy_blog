@@ -7,15 +7,15 @@ const Navbar = () => {
   const [showSearchBar, setShowSearchBar] = React.useState<boolean>(false);
   const NavItem = [
     'Reviews',
-    'Movies',
-    'Tech',
-    'Gaming',
-    'Comics',
-    'Anime',
-    'Lyrics',
-    'News',
-    'Contact',
-    'About',
+    // 'Movies',
+    // 'Tech',
+    // 'Gaming',
+    // 'Comics',
+    // 'Anime',
+    // 'Lyrics',
+    // 'News',
+    // 'Contact',
+    // 'About',
   ];
 
   const handleState = () => {
@@ -26,7 +26,7 @@ const Navbar = () => {
   };
 
   return (
-    <header className='w-full h-auto bg-slate-900 py-5 text-white px-10'>
+    <header className='w-full sticky top-0 h-20 bg-slate-900 py-5 text-white px-10'>
       <section className='flex items-center justify-between'>
         <div className='flex items-center gap-4'>
           <div className='text-4xl'>Logo</div>
@@ -42,23 +42,33 @@ const Navbar = () => {
         </div>
 
         <div className='flex items-center gap-5'>
-            
-          {/* Search Bar & Button */}
-          <div className='flex items-center'>
-            <div className='flex items-center gap-5 transition-all duration-400'>
+          {/* SearchButton */}
+          <button onClick={handleStateSearch} title='Search' type='button'>
+            <FaSearch className='' />
+            <span className='sr-only'>Search button</span>
+          </button>
+
+          {showSearchBar && (
+            <button
+              className='z-[100]'
+              onClick={handleStateSearch}
+              title='Search'
+              type='button'
+            >
+              <FaTimes className='text-3xl' />
+              <span className='sr-only'>Cancel button</span>
+            </button>
+          )}
+
+          {showSearchBar && (
+            <form className='p-5 bg-slate-800 text-white z-[80] w-full absolute top-0 left-0 h-40 flex flex-col justify-center items-start'>
               <input
-                className={`text-black transition-all duration-400 outline-none rounded-md p-2 ${
-                  showSearchBar ? 'w-[17rem] block' : 'w-[0.5px] p-0'
-                }`}
-                placeholder='Into The Badlands'
+                className='bg-transparent w-full border-b border-gray-300 placeholder:text-4xl h-20 outline-none text-4xl'
+                placeholder='Search...'
                 type='text'
               />
-              <button onClick={handleStateSearch} title='Search' type='button'>
-                <FaSearch />
-                <span className='sr-only'>Search button</span>
-              </button>
-            </div>
-          </div>
+            </form>
+          )}
 
           {/* Menu Button */}
           {showMenu ? (
