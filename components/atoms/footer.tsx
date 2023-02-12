@@ -8,7 +8,7 @@ import {
 
 const Footer = () => {
   return (
-    <footer className='bg-black flex flex-col gap-5 justify-center items-center w-full h-auto text-center py-5'>
+    <footer className='bg-black flex text-white flex-col gap-5 justify-center items-center w-full h-auto text-center py-5'>
       <p className='text-4xl font-extrabold'>lOGO</p>
       <p>
         The world&apos;s defining voice in music and pop culture: breaking
