@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 const ImageCard = ({ data }: { data: any }) => {
   return (
-    <div className='group w-full h-[20rem] relative first:col-span-2 overflow-hidden bg-no-repeat border border-gray-200 rounded-lg shadow'>
+    <div className='group w-full h-[20rem] relative first:col-span-2 overflow-hidden bg-no-repeat rounded-md shadow shadow-white/10'>
       <Image
         className='w-full h-full object-cover rounded-md'
         src={data?.image}

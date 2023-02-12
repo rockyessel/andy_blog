@@ -8,7 +8,7 @@ const App = ({ Component, pageProps }: AppProps) => {
   return (
     <React.Fragment>
       <NextNProgress color={'#ff5277'} />
-      <Navbar />
+      {/* <Navbar /> */}
       <Component {...pageProps} />
       <Footer />
     </React.Fragment>

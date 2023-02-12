@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import React from 'react';
-import { FaTimes, FaSearch } from 'react-icons/fa';
+import { FaTimes, FaSearch, FaBars } from 'react-icons/fa';
 
 const Navbar = () => {
   const [showMenu, setShowMenu] = React.useState<boolean>(false);
@@ -26,95 +26,84 @@ const Navbar = () => {
   };
 
   return (
-    <header className='w-full z-[2] sticky top-0 h-20 bg-slate-900 py-5 text-white px-10'>
-      <section className='flex items-center justify-between'>
-        <div className='flex items-center gap-4'>
-          <div className='text-4xl'>Logo</div>
+    <header className='w-full px-6 py-5 flex items-center gap-20 justify-between bg-black/60'>
+      {/* Logo & Search Bar */}
+      <div className='w-full flex items-center gap-5'>
+        {/* Logo */}
+        <span className='text-3xl font-bold'>lOGO</span>
 
-          {/* Desktop Menu */}
-          <nav className='max_screen:hidden'>
-            <ul className='flex gap-4'>
-              {NavItem?.map((item, index) => (
-                <li key={index}>{item}</li>
-              ))}
-            </ul>
-          </nav>
-        </div>
-
-        <div className='flex items-center gap-5'>
-          {/* SearchButton */}
-          <button onClick={handleStateSearch} title='Search' type='button'>
-            <FaSearch className='' />
-            <span className='sr-only'>Search button</span>
-          </button>
-
+        {/* Search Bar */}
+        <div
+          className={`w-full lg:bg-slate-500/70 rounded-md px-4 py-1 max-w-5xl group: flex items-center ${
+            showSearchBar ? 'bg-transparent' : ''
+          }`}
+        >
+          <input
+            type='text'
+            name='search'
+            className={` w-full ${
+              showSearchBar
+                ? 'block px-5 outline-none py-10 h-10 absolute top-0 left-0 bg-black'
+                : 'bg-transparent hidden lg:block outline-none px-4 py-2'
+            }`}
+            placeholder='Search for movies, tv shows and people...'
+          />
+          <FaSearch
+            onClick={handleStateSearch}
+            className='text-2xl cursor-pointer'
+          />
           {showSearchBar && (
-            <button
-              className='z-[100]'
+            <FaTimes
               onClick={handleStateSearch}
-              title='Search'
-              type='button'
-            >
-              <FaTimes className='text-3xl' />
-              <span className='sr-only'>Cancel button</span>
-            </button>
-          )}
-
-          {showSearchBar && (
-            <form className='p-5 bg-slate-800 text-white z-[80] w-full absolute top-0 left-0 h-40 flex flex-col justify-center items-start'>
-              <input
-                className='bg-transparent w-full border-b border-gray-300 placeholder:text-4xl h-20 outline-none text-4xl'
-                placeholder='Search...'
-                type='text'
-              />
-            </form>
-          )}
-
-          {/* Menu Button */}
-          {showMenu ? (
-            <button
-              type='button'
-              title=''
-              onClick={handleState}
-              className='z-[2] px-3 py-3 hover:rounded-md md:hidden inline-flex flex-col justify-center items-center'
-            >
-              <FaTimes className='text-2xl' />
-              <span className='hidden columns-md:block'>Close</span>
-            </button>
-          ) : (
-            <button
-              type='button'
-              title=''
-              onClick={handleState}
-              className=' min_screen:hidden inline-flex flex-col justify-center items-center'
-            >
-              <div className='space-y-2 group'>
-                <span className='block w-5 h-0.5 bg-gray-200 group-hover:bg-opacity-[0.4]'></span>
-                <span className='block w-8 h-0.5 bg-gray-200 group-hover:bg-opacity-[0.4]'></span>
-                <span className='block w-8 h-0.5 bg-gray-200 group-hover:bg-opacity-[0.4]'></span>
-              </div>
-              <span className='hidden md:block'>Menu</span>
-            </button>
-          )}
-
-          {/* Mobile Menu */}
-          {showMenu && (
-            <div className='transition-all duration-400 md:hidden bg-slate-900 bg-opacity-[0.7] flex justify-end items-center absolute top-0 left-0 w-full h-screen overflow-hidden'>
-              <div className='flex flex-col overflow-auto pt-32 pl-5 bg-slate-900 items-start gap-8 w-[280px] h-screen'>
-                <ul className='flex flex-col uppercase divide-white/60 items-start gap-8 w-full h-full'>
-                  {NavItem.map((item, index) => (
-                    <Link key={index} href={'/'}>
-                      <li className='inline-flex z-[1] justify-start items-center gap-2  hover:text-gray-500  duration-700 cursor-pointer w-full text-center hover:border-none'>
-                        {item}
-                      </li>
-                    </Link>
-                  ))}
-                </ul>
-              </div>
-            </div>
+              className='text-2xl z-[200] absolute right-10 cursor-pointer'
+            />
           )}
         </div>
-      </section>
+      </div>
+
+      {/* Desktop Menu */}
+      <nav className='w-full hidden md:flex items-center gap-10 justify-between font-medium'>
+        <ul className='flex items-center gap-5'>
+          <li>Movies</li>
+          <li>Series</li>
+          <li>Anime</li>
+          <li>Contact</li>
+        </ul>
+
+        <ul className='flex items-center gap-5'>
+          <li>Register</li>
+          <li className='rounded-md bg-white text-black px-4 py-2'>Login</li>
+        </ul>
+      </nav>
+
+      {/* Button */}
+      <button
+        onClick={handleState}
+        className='w-30 md:hidden'
+        type='button'
+        title='mobile-menu'
+      >
+        <span className='w-full inline-flex flex-col gap-1'>
+          <span className='block w-full h-0.5 bg-gray-200 group-hover:bg-opacity-[0.4]'></span>
+          <span className='block w-full h-0.5 bg-gray-200 group-hover:bg-opacity-[0.4]'></span>
+          <span className='block w-full h-0.5 bg-gray-200 group-hover:bg-opacity-[0.4]'></span>
+        </span>
+        <span>Menu</span>
+      </button>
+
+      {/* Mobile menu */}
+      {showMenu && (
+        <nav className='md:hidden absolute w-full top-20 right-0'>
+          <ul className='bg-slate-900 w-full py-10 px-2 text-xl font-medium flex flex-col gap-2'>
+            <li className='hover:rounded-md hover:bg-white hover:text-black px-4 py-2'>Movies</li>
+            <li className='hover:rounded-md hover:bg-white hover:text-black px-4 py-2'>Series</li>
+            <li className='hover:rounded-md hover:bg-white hover:text-black px-4 py-2'>Anime</li>
+            <li className='hover:rounded-md hover:bg-white hover:text-black px-4 py-2'>Contact</li>
+            <li className='hover:rounded-md hover:bg-white hover:text-black px-4 py-2'>Register</li>
+            <li className='rounded-md bg-white text-black px-4 py-2 hover:bg-blue-700 hover:text-white'>Login</li>
+          </ul>
+        </nav>
+      )}
     </header>
   );
 };

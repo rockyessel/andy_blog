@@ -8,9 +8,10 @@ import { CommonPathProps, PostDetailsData } from '@/utils/query';
 import { CommonPath, Params } from '@/interface';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
-import { ImageTextCard } from '@/components';
+import { Breadcrumb, ImageTextCard } from '@/components';
 import { data } from '@/utils/services';
 import { FaFacebookSquare } from 'react-icons/fa';
+import Link from 'next/link';
 
 const Post = (props: InferGetServerSidePropsType<typeof getStaticProps>) => {
   const router = useRouter();
@@ -23,10 +24,39 @@ const Post = (props: InferGetServerSidePropsType<typeof getStaticProps>) => {
 
   if (router.isFallback) return <p>404</p>;
 
+  const d = [
+    {
+      name: 'Home',
+      url: '/',
+    },
+    {
+      name: 'Mobile',
+      url: '/mobile',
+    },
+    {
+      name: 'How IT jobs and recruiting on the dark web might trick you',
+      url: '/doctor-who-the-family-of-blood-explained',
+    },
+  ];
+
   return (
-    <main className='w-full px-6 md:px-20 gap-20 py-20 md:flex justify-around'>
-      <section className='w-full md:w-[50rem]'>
+    <main className='w-full px-6 md:px-20 gap-20 py-20'>
+      <section>
+        <div>
+          <span>Posted 30 January 2023・04:00am</span>
+          <h1>How IT jobs and recruiting on the dark web might trick you</h1>
+          <Breadcrumb>
+            <span>dsdfsdfdsf</span>
+            <span>dsdfsdfdsf</span>
+            <span>dsdfsdfdsf</span>
+            <span>dsdfsdfdsf</span>
+          </Breadcrumb>
+        </div>
+      </section>
+
+      {/* <section className='w-full md:w-[50rem]'>
         <section className='flex flex-col gap-2 mb-5'>
+          <span>Posted 30 January 2023, 04:00am</span>
           <h1 className='text-4xl font-bold'>
             New X-Men Cosplay Brings Professor X&apos;s Krakoa-Era Costume To
             Life
@@ -275,7 +305,7 @@ const Post = (props: InferGetServerSidePropsType<typeof getStaticProps>) => {
             ))}
           </ul>
         </div>
-      </section>
+      </section> */}
     </main>
   );
 };
