@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <React.Fragment>
       <Hero />
-      <main className='px-6 flex flex-col gap-5 my-16'>
+      {/* <main className='px-6 flex flex-col gap-5 my-16'>
         <div>
           <ul className='grid grid-cols-3 gap-4'>
             {data?.slice(0, 5)?.map((data, index) => (
@@ -51,7 +51,7 @@ export default function Home() {
             </div>
           </section>
         </section>
-      </main>
+      </main> */}
     </React.Fragment>
   );
 }
