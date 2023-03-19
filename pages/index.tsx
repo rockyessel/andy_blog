@@ -15,7 +15,7 @@ export default function Home() {
       <main className='w-full flex flex-col py-10 px-6'>
         <div className='flex flex-col gap-2'>
           <p className='text-3xl font-bold'>Recent Uploads</p>
-          <ul className='w-full grid grid-cols-3 gap-x-5 gap-y-5'>
+          <ul className='w-full grid lg:grid-cols-3 gap-x-5 gap-y-5'>
             <li className='flex flex-col gap-8 cursor-pointer'>
               <div className=''>
                 <Image src='/g.jpg' width={1000} height={1000} alt='' />
@@ -36,7 +36,7 @@ export default function Home() {
                   </p>
                 </div>
 
-                <div className='flex gap-2 items-center text-lg'>
+                <div className='flex flex-wrap gap-2 items-center text-lg'>
                   <span className='border-2 border-black/60 rounded-md px-3'>
                     Product
                   </span>
@@ -73,7 +73,7 @@ export default function Home() {
                   </p>
                 </div>
 
-                <div className='flex gap-2 items-center text-lg'>
+                <div className='flex flex-wrap gap-2 items-center text-lg'>
                   <span className='border-2 border-black/60 rounded-md px-3'>
                     Product
                   </span>
@@ -110,7 +110,7 @@ export default function Home() {
                   </p>
                 </div>
 
-                <div className='flex gap-2 items-center text-lg'>
+                <div className='flex flex-wrap gap-2 items-center text-lg'>
                   <span className='border-2 border-black/60 rounded-md px-3'>
                     Product
                   </span>
