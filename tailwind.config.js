@@ -9,7 +9,11 @@ module.exports = {
     './src/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      screens: {
+        screen_fold: { max: '492px' },
+      },
+    },
   },
   plugins: [require('@tailwindcss/typography')],
 };
