@@ -4,11 +4,11 @@ import Image from 'next/image';
 const ImageTextCard = ({ data }: { data: any }) => {
   return (
     <div className='py-5'>
-      <div className='max-w-[18rem] border border-gray-200 rounded-md shadow'>
+      <div className='max-w-[10rem] flex items-center shadow'>
         <Image
-          className='rounded-t-md'
-          width={300}
-          height={50}
+          className='w-auto h-auto'
+          width={1000}
+          height={1000}
           src={data?.image}
           alt=''
         />
