@@ -1,28 +1,30 @@
-import React from 'react'
+import React from 'react';
 
-const Breadcrumb = (props:any) => {
-    const childrenArray = React.Children.toArray(props.children);
+const Breadcrumb = (props: { children: JSX.Element[] }) => {
+  const childrenArray = React.Children.toArray(props.children);
 
-    console.log(childrenArray);
+  console.log(childrenArray);
 
-
-    const childrenWithSeparator = childrenArray.map((child, index) => {
+  const childrenWithSeparator = childrenArray.map((child, index) => {
     if (index !== childrenArray.length - 1) {
+      console.log(child);
       return (
         <React.Fragment key={index}>
           {child}
-          <span>/</span>
+          <span>{`/`}</span>
         </React.Fragment>
       );
     }
-    return child
+    return child;
   });
 
+  console.log('childrenWithSeparator', childrenWithSeparator);
+
   return (
-    <nav className='mx-8 md:mx-16 lg:mx-32 mt-8'>
-      <ol className='flex items-center space-x-4'>{childrenWithSeparator}</ol>
+    <nav className=''>
+      <ol className='flex items-center text-sm'>{childrenWithSeparator}</ol>
     </nav>
   );
-}
+};
 
-export default Breadcrumb
+export default Breadcrumb;

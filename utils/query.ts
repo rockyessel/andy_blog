@@ -14,7 +14,7 @@ export const CommonPathProps = async (path: string = '') => {
 };
 
 export const PostDetailsData = async (post = '') => {
-  const query = `*[type=="post"]`;
+  const query = `*[_type == 'post' && slug.current == '${post}'][0]`;
 
   const result = await client.fetch(query, { post });
 

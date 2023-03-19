@@ -34,7 +34,7 @@ export default function Home() {
           </ul>
         </div>
 
-        <section className='flex flex-col lg:flex-row justify-between px-4 lg:px-10 xl:px-16'>
+        <section className='flex flex-col lg:flex-row justify-between px-4 lg:px-6 xl:px-20 py-5'>
           <section className='flex flex-col gap-5'>
             <div>
               <h2 className='text-xl font-bold'>Recent</h2>
@@ -55,7 +55,7 @@ export default function Home() {
             </div>
           </section>
 
-          <section className='lg:w-[15rem] xl:w-[23rem]'>
+          <section className='lg:w-[19rem] xl:w-[23rem]'>
             <div>
               <h3 className='text-xl font-bold'>TRENDING</h3>
               <ul className='grid screen_fold:grid-cols-1 grid-cols-2 lg:grid-cols-1 divide-y-[1px]'>

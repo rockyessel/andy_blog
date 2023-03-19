@@ -41,18 +41,11 @@ const Post = (props: InferGetServerSidePropsType<typeof getStaticProps>) => {
 
   return (
     <main className='w-full px-6 md:px-20 gap-20 py-20'>
-      <section>
-        <div>
-          <span>Posted 30 January 2023・04:00am</span>
-          <h1>How IT jobs and recruiting on the dark web might trick you</h1>
-          <Breadcrumb>
-            <span>dsdfsdfdsf</span>
-            <span>dsdfsdfdsf</span>
-            <span>dsdfsdfdsf</span>
-            <span>dsdfsdfdsf</span>
-          </Breadcrumb>
-        </div>
-      </section>
+      <h1>How IT jobs and recruiting on the dark web might trick you</h1>
+      <Breadcrumb>
+        <span>Home</span>
+        <span>Movies</span>
+      </Breadcrumb>
 
       {/* <section className='w-full md:w-[50rem]'>
         <section className='flex flex-col gap-2 mb-5'>

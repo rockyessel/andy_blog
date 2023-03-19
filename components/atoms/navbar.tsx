@@ -7,15 +7,15 @@ const Navbar = () => {
   const [showSearchBar, setShowSearchBar] = React.useState<boolean>(false);
   const NavItem = [
     'Reviews',
-    // 'Movies',
-    // 'Tech',
-    // 'Gaming',
-    // 'Comics',
-    // 'Anime',
-    // 'Lyrics',
-    // 'News',
-    // 'Contact',
-    // 'About',
+    'Movies',
+    'Tech',
+    'Gaming',
+    'Comics',
+    'Anime',
+    'Lyrics',
+    'News',
+    'Contact',
+    'About',
   ];
 
   const handleState = () => {
@@ -26,11 +26,13 @@ const Navbar = () => {
   };
 
   return (
-    <header className='w-full px-6 py-5 flex items-center gap-20 justify-between bg-black/60'>
+    <header className='w-full px-6 py-5 flex items-center gap-20 justify-between bg-gray-900 text-white'>
       {/* Logo & Search Bar */}
       <div className='w-full flex items-center gap-5'>
         {/* Logo */}
-        <span className='text-3xl font-bold'>lOGO</span>
+        <span className='text-3xl font-bold'>
+          <img src="/logo.png" className='w-16' alt="" />
+        </span>
 
         {/* Search Bar */}
         <div

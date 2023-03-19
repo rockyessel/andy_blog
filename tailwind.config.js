@@ -12,6 +12,7 @@ module.exports = {
     extend: {
       screens: {
         screen_fold: { max: '492px' },
+        max_screen: { max: '674px' },
       },
     },
   },
