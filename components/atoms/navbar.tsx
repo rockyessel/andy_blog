@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import { FaTimes, FaSearch, FaBars } from 'react-icons/fa';
@@ -31,7 +32,7 @@ const Navbar = () => {
       <div className='w-full flex items-center gap-5'>
         {/* Logo */}
         <span className='text-3xl font-bold'>
-          <img src="/logo.png" className='w-16' alt="" />
+          <Image src='/logo.png' width={1000} height={1000} className='w-16' alt='' />
         </span>
 
         {/* Search Bar */}
@@ -97,12 +98,24 @@ const Navbar = () => {
       {showMenu && (
         <nav className='md:hidden absolute w-full top-20 right-0'>
           <ul className='bg-slate-900 w-full py-10 px-2 text-xl font-medium flex flex-col gap-2'>
-            <li className='hover:rounded-md hover:bg-white hover:text-black px-4 py-2'>Movies</li>
-            <li className='hover:rounded-md hover:bg-white hover:text-black px-4 py-2'>Series</li>
-            <li className='hover:rounded-md hover:bg-white hover:text-black px-4 py-2'>Anime</li>
-            <li className='hover:rounded-md hover:bg-white hover:text-black px-4 py-2'>Contact</li>
-            <li className='hover:rounded-md hover:bg-white hover:text-black px-4 py-2'>Register</li>
-            <li className='rounded-md bg-white text-black px-4 py-2 hover:bg-blue-700 hover:text-white'>Login</li>
+            <li className='hover:rounded-md hover:bg-white hover:text-black px-4 py-2'>
+              Movies
+            </li>
+            <li className='hover:rounded-md hover:bg-white hover:text-black px-4 py-2'>
+              Series
+            </li>
+            <li className='hover:rounded-md hover:bg-white hover:text-black px-4 py-2'>
+              Anime
+            </li>
+            <li className='hover:rounded-md hover:bg-white hover:text-black px-4 py-2'>
+              Contact
+            </li>
+            <li className='hover:rounded-md hover:bg-white hover:text-black px-4 py-2'>
+              Register
+            </li>
+            <li className='rounded-md bg-white text-black px-4 py-2 hover:bg-blue-700 hover:text-white'>
+              Login
+            </li>
           </ul>
         </nav>
       )}

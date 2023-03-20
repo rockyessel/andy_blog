@@ -1,11 +1,13 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
+import moment from 'moment'
+import { PostProps } from '@/interface';
 
-const ImageTextDescCard = ({ data }: { data: any }) => {
+const ImageTextDescCard = ({ data }: { data: PostProps }) => {
   return (
-    <Link href='/'>
-      <li className='py-5'>
+    <li className='py-5'>
+      <Link href={`/posts/${data?.slug?.current}`}>
         <div className='flex flex-col items-center md:flex-row lg:max-w-3xl xl:max-w-4xl'>
           <Image
             className='w-full md:w-[20rem] lg:w-[25rem] lg:h-[13rem] object-cover object-top'
@@ -17,27 +19,34 @@ const ImageTextDescCard = ({ data }: { data: any }) => {
           />
           <div className='px-3 py-3 flex flex-col gap-2'>
             <header className='flex flex-col gap-1'>
-              <span className='uppercase font-bold text-sm text-yellow-500'>
-                {data?.category}
-              </span>
+              {data?.categories?.map((category, index) => (
+                <span
+                  key={index}
+                  className='uppercase font-bold text-sm text-yellow-500'
+                >
+                  {category?.title}
+                </span>
+              ))}
               <h2 className='capitalize font-bold md:text-2xl lg:text-3xl screen_fold:text-lg leading-none tracking-tighter'>
-                {data?.name}
+                {data?.title}
               </h2>
               <p className='text-lg screen_fold:text-sm'>{data?.description}</p>
             </header>
-            <footer className='uppercase flex items-center gap-4 text-black/60 text-xs'>
+            <footer className='uppercase flex items-center gap-1 text-black/60 text-xs'>
               <p>
                 By{' '}
                 <span className='text-black/80 font-medium'>
-                  {data?.author}
+                  {data?.author.name}
                 </span>
               </p>
-              <p className=' '>{data?.estimated_time} minutes ago</p>
+              <p className=' '>
+                PUBLISHED {moment(data?.publishedAt).startOf('hour').fromNow()}
+              </p>
             </footer>
           </div>
         </div>
-      </li>
-    </Link>
+      </Link>
+    </li>
   );
 };
 

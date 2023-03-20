@@ -1,8 +1,14 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { PostProps } from '@/interface';
 
-const ImageCard = (props: any) => {
+interface ImageCardProps {
+  data: PostProps;
+  class: string;
+}
+
+const ImageCard = (props: ImageCardProps) => {
   return (
     <li
       className={`group w-full relative overflow-hidden bg-no-repeat shadow shadow-white/10 ${props.class}`}

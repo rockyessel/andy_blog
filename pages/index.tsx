@@ -15,6 +15,7 @@ import {
 } from 'react-icons/fa';
 import { GetStaticProps, InferGetServerSidePropsType } from 'next';
 import { AllPostData } from '@/utils/query';
+import { PostProps } from '@/interface';
 
 export default function Home(props: InferGetServerSidePropsType<typeof getStaticProps>) {
 
@@ -44,7 +45,7 @@ export default function Home(props: InferGetServerSidePropsType<typeof getStatic
             <div>
               <h2 className='text-xl font-bold'>Recent</h2>
               <ul className='flex flex-col divide-y-[1px]'>
-                {data?.slice(0, 3)?.map((data, index) => (
+                {props?.data?.slice(0, 3)?.map((data, index) => (
                   <ImageTextDescCard key={index} data={data} />
                 ))}
               </ul>
@@ -109,9 +110,9 @@ export default function Home(props: InferGetServerSidePropsType<typeof getStatic
 }
 
 export const getStaticProps: GetStaticProps<{
-  data: any[];
+  data: PostProps[];
 }> = async () => {
-  const data: any[] = await AllPostData();
+  const data: PostProps[] = await AllPostData();
 
   return {
     props: JSON.parse(JSON.stringify({ data })),

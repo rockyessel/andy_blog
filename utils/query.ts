@@ -24,6 +24,7 @@ export const PostDetailsData = async (post = '') => {
 export const AllPostData = async () => {
   const query = `*[_type == 'post'][]{
     title,
+    description,
   _createdAt,
   _id,
   _updatedAt,

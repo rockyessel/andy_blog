@@ -116,13 +116,10 @@ export interface CodeProps {
   language: string;
 }
 
-export interface NoteProps {
+export interface PostProps {
   _createdAt: string;
   _id: string;
   _updatedAt: string;
-  alt: {
-    current: string;
-  };
   author: {
     bio: BodyProps;
     name: string;
@@ -131,7 +128,6 @@ export interface NoteProps {
     };
   };
   body: BodyProps;
-  caption: string;
   categories: {
     title: string;
     slug: {
@@ -140,39 +136,16 @@ export interface NoteProps {
     description: string;
   }[];
   description: string;
-  featured: boolean;
-  keywords: string;
   image: string;
-  estimated_reading_time: number;
   publishedAt: string;
-  recommended: boolean;
-  reference_post: {
-    name: string;
-    url: string;
-  }[];
   slug: {
     current: string;
   };
-  tags: {
+  tags?: {
     title: string;
   }[];
   title: string;
-  viewCount: number;
-  comment: Comment[];
-  more_post: {
-    comment: Comment[];
-    description: string;
-    estimated_reading_time: number;
-    image: string;
-    _id: string;
-    recommended: boolean;
-    featured: boolean;
-    slug: {
-      current: string;
-    };
-    title: string;
-    viewCount: number;
-  }[];
+
 }
 
 export interface CommentUserProps {
