@@ -54,8 +54,8 @@ export default function Home(props: InferGetServerSidePropsType<typeof getStatic
             <div>
               <h2>Anime</h2>
               <ul className='grid grid-cols-1 divide-y-[1px]'>
-                {data?.slice(0, 3)?.map((data, index) => (
-                  <ImageTextDescCard key={index} data={data} />
+                {props?.data?.slice(0, 3)?.map((data, index) => (
+                  data.categories?.title === 'Anime' && <ImageTextDescCard key={index} data={data} />
                 ))}
               </ul>
             </div>

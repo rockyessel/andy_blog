@@ -5,6 +5,8 @@ import moment from 'moment'
 import { PostProps } from '@/interface';
 
 const ImageTextDescCard = ({ data }: { data: PostProps }) => {
+
+  console.log('data', data);
   return (
     <li className='py-5'>
       <Link href={`/posts/${data?.slug?.current}`}>
@@ -19,14 +21,9 @@ const ImageTextDescCard = ({ data }: { data: PostProps }) => {
           />
           <div className='px-3 py-3 flex flex-col gap-2'>
             <header className='flex flex-col gap-1'>
-              {data?.categories?.map((category, index) => (
-                <span
-                  key={index}
-                  className='uppercase font-bold text-sm text-yellow-500'
-                >
-                  {category?.title}
-                </span>
-              ))}
+              <span className='text-sm text-yellow-500'>
+                {data?.categories?.title}
+              </span>
               <h2 className='capitalize font-bold md:text-2xl lg:text-3xl screen_fold:text-lg leading-none tracking-tighter'>
                 {data?.title}
               </h2>

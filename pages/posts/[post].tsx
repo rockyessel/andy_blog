@@ -8,7 +8,7 @@ import { CommonPathProps, PostDetailsData } from '@/utils/query';
 import { CommonPath, Params } from '@/interface';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
-import { Breadcrumb, ImageTextCard } from '@/components';
+import { Breadcrumb, ImageTextCard, SocialButtonLinks } from '@/components';
 import { data } from '@/utils/services';
 import { TfiFacebook } from 'react-icons/tfi';
 import { BsTwitter, BsLinkedin } from 'react-icons/bs';
@@ -17,6 +17,8 @@ import { FaFlipboard } from 'react-icons/fa';
 import { FiLink } from 'react-icons/fi';
 import { MdEmail } from 'react-icons/md';
 import { PortableText } from '@portabletext/react';
+import Link from 'next/link';
+import moment from 'moment';
 
 const Post = (props: InferGetServerSidePropsType<typeof getStaticProps>) => {
   const router = useRouter();
@@ -33,8 +35,7 @@ const Post = (props: InferGetServerSidePropsType<typeof getStaticProps>) => {
       </Breadcrumb>
       <div className='flex flex-col gap-2'>
         <h1 className='text-4xl font-bold capitalize tracking-tighter leading-none'>
-          Did Better Call Saul Redeem Saul In The End? Howard Actor Responds How
-          IT jobs and recruiting on the dark web might trick you
+          {props?.post_data?.title}
         </h1>
         <p className='text-lg'>
           After the ending of Better Call Saul, it&apos;s hard to decide if Saul
@@ -44,11 +45,14 @@ const Post = (props: InferGetServerSidePropsType<typeof getStaticProps>) => {
 
         <div className='inline-flex items-center gap-1 text-xs uppercase'>
           <p>
-            By <span className='text-black font-medium'>LUKAS SHAYO</span>
+            By{' '}
+            <span className='text-black/80 font-medium'>
+              {props?.post_data?.author.name}
+            </span>
           </p>
-          <p>
-            PUBLISHED <span className='text-black font-medium'>29 MINUTES</span>{' '}
-            AGO
+          <p className=' '>
+            PUBLISHED{' '}
+            {moment(props?.post_data?.publishedAt).startOf('hour').fromNow()}
           </p>
         </div>
       </div>
@@ -56,7 +60,7 @@ const Post = (props: InferGetServerSidePropsType<typeof getStaticProps>) => {
       <section className='w-full flex flex-col gap-4 mt-5'>
         <div className='w-full'>
           <Image
-            src='/howard-in-better-call-saul-1.avif'
+            src={props?.post_data?.image}
             className='w-full max-h-[35rem]'
             width={1000}
             height={1000}
@@ -72,64 +76,11 @@ const Post = (props: InferGetServerSidePropsType<typeof getStaticProps>) => {
 
             <div>
               <div>
-                <div className='flex flex-wrap items-center justify-between'>
-                  <a
-                    href='www.facebook.com'
-                    target='_blank'
-                    title='Share on Facebook'
-                    className='bg-[#3156ad] font-medium text-white inline-flex items-center gap-1 rounded-sm py-1 px-3'
-                  >
-                    <TfiFacebook className='text-xl' /> Share
-                  </a>
-                  <a
-                    href='www.facebook.com'
-                    target='_blank'
-                    title='Share on Facebook'
-                    className='bg-[#21acdf] font-medium text-white inline-flex items-center gap-1 rounded-sm py-1 px-3'
-                  >
-                    <BsTwitter className='text-xl' /> Tweet
-                  </a>
-                  <a
-                    href='www.facebook.com'
-                    target='_blank'
-                    title='Share on Facebook'
-                    className='bg-[#2179d1] font-medium text-white inline-flex items-center gap-1 rounded-sm py-1 px-3'
-                  >
-                    <BsLinkedin className='text-xl' /> Share
-                  </a>
-                  <a
-                    href='www.facebook.com'
-                    target='_blank'
-                    title='Share on Facebook'
-                    className='bg-[#f05e31] font-medium text-white inline-flex items-center gap-1 rounded-sm py-1 px-3'
-                  >
-                    <TbBrandReddit className='text-xl' /> Share
-                  </a>
-                  <a
-                    href='www.facebook.com'
-                    target='_blank'
-                    title='Share on Facebook'
-                    className='bg-[#e9483d] font-medium text-white inline-flex items-center gap-1 rounded-sm py-1 px-3'
-                  >
-                    <FaFlipboard className='text-xl' /> Share
-                  </a>
-                  <a
-                    href='www.facebook.com'
-                    target='_blank'
-                    title='Share on Facebook'
-                    className='bg-[#42484e] font-medium text-white inline-flex items-center gap-1 rounded-sm py-1 px-3'
-                  >
-                    <FiLink className='text-xl' /> Copy
-                  </a>
-                  <a
-                    href='www.facebook.com'
-                    target='_blank'
-                    title='Share on Facebook'
-                    className='bg-[#bdc3cc] font-medium text-white inline-flex items-center gap-1 rounded-sm py-1 px-3'
-                  >
-                    <MdEmail className='text-xl' /> Email
-                  </a>
-                </div>
+                <SocialButtonLinks
+                  body={props?.post_data?.description}
+                  title={props?.post_data?.title}
+                  slug={props?.post_data?.slug?.current}
+                />
 
                 <div className='m-0 p-0'>
                   <p className='text-xl font-bold'>Related Topics</p>

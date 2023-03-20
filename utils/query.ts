@@ -14,7 +14,34 @@ export const CommonPathProps = async (path: string = '') => {
 };
 
 export const PostDetailsData = async (post = '') => {
-  const query = `*[_type == 'post' && slug.current == '${post}'][0]`;
+  const query = `*[_type == 'post' && slug.current == '${post}'][0]{
+    title,
+    description,
+  _createdAt,
+  _id,
+  _updatedAt,
+  author->{
+    bio,
+    "image":image.asset->url,
+    name,
+    slug{
+      current,
+    },
+  },
+  body,
+  categories->{
+  title,
+  slug{
+    current,
+  },
+  description,
+  },
+  "image": mainImage.asset->url,
+  publishedAt,
+  slug{
+  current,
+  }
+}`;
 
   const result = await client.fetch(query, { post });
 
@@ -37,7 +64,7 @@ export const AllPostData = async () => {
     },
   },
   body,
-  categories[]->{
+  categories->{
   title,
   slug{
     current,

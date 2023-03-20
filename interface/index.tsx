@@ -134,7 +134,7 @@ export interface PostProps {
       current: string;
     };
     description: string;
-  }[];
+  };
   description: string;
   image: string;
   publishedAt: string;
