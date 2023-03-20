@@ -20,3 +20,37 @@ export const PostDetailsData = async (post = '') => {
 
   return result;
 };
+
+export const AllPostData = async () => {
+  const query = `*[_type == 'post'][]{
+    title,
+  _createdAt,
+  _id,
+  _updatedAt,
+  author->{
+    bio,
+    "image":image.asset->url,
+    name,
+    slug{
+      current,
+    },
+  },
+  body,
+  categories[]->{
+  title,
+  slug{
+    current,
+  },
+  description,
+  },
+  "image": mainImage.asset->url,
+  publishedAt,
+  slug{
+  current,
+  }
+}`;
+
+  const result = await client.fetch(query);
+
+  return result;
+};

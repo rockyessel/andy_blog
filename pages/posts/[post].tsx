@@ -10,19 +10,23 @@ import { useRouter } from 'next/router';
 import Image from 'next/image';
 import { Breadcrumb, ImageTextCard } from '@/components';
 import { data } from '@/utils/services';
-import { FaFacebookSquare } from 'react-icons/fa';
-import Link from 'next/link';
+import { TfiFacebook } from 'react-icons/tfi';
+import { BsTwitter, BsLinkedin } from 'react-icons/bs';
+import { TbBrandReddit } from 'react-icons/tb';
+import { FaFlipboard } from 'react-icons/fa';
+import { FiLink } from 'react-icons/fi';
+import { MdEmail } from 'react-icons/md';
 import { PortableText } from '@portabletext/react';
 
 const Post = (props: InferGetServerSidePropsType<typeof getStaticProps>) => {
   const router = useRouter();
 
-console.log('data', props?.post_data);
+  console.log('data', props?.post_data);
 
   if (router.isFallback) return <p>404</p>;
 
   return (
-    <main className='max_screen:w-full max_screen:px-4 px-4 xl:w-[80rem] mx-auto'>
+    <main className='max_screen:w-full max_screen:px-4 px-4 xl:w-[80rem] mx-auto pb-10'>
       <Breadcrumb>
         <span>Home</span>
         <span>Movies</span>
@@ -60,10 +64,101 @@ console.log('data', props?.post_data);
           />
         </div>
 
-        <div className='w-full flex flex-wrap justify-between gap-5'>
-          <article className='xl:w-[50rem] prose-lg'>
-            <PortableText value={props?.post_data?.body} />
-          </article>
+        <div className='w-full flex flex-col lg:flex-row justify-between gap-5'>
+          <div className='lg:w-[45rem] prose-lg'>
+            <article>
+              <PortableText value={props?.post_data?.body} />
+            </article>
+
+            <div>
+              <div>
+                <div className='flex flex-wrap items-center justify-between'>
+                  <a
+                    href='www.facebook.com'
+                    target='_blank'
+                    title='Share on Facebook'
+                    className='bg-[#3156ad] font-medium text-white inline-flex items-center gap-1 rounded-sm py-1 px-3'
+                  >
+                    <TfiFacebook className='text-xl' /> Share
+                  </a>
+                  <a
+                    href='www.facebook.com'
+                    target='_blank'
+                    title='Share on Facebook'
+                    className='bg-[#21acdf] font-medium text-white inline-flex items-center gap-1 rounded-sm py-1 px-3'
+                  >
+                    <BsTwitter className='text-xl' /> Tweet
+                  </a>
+                  <a
+                    href='www.facebook.com'
+                    target='_blank'
+                    title='Share on Facebook'
+                    className='bg-[#2179d1] font-medium text-white inline-flex items-center gap-1 rounded-sm py-1 px-3'
+                  >
+                    <BsLinkedin className='text-xl' /> Share
+                  </a>
+                  <a
+                    href='www.facebook.com'
+                    target='_blank'
+                    title='Share on Facebook'
+                    className='bg-[#f05e31] font-medium text-white inline-flex items-center gap-1 rounded-sm py-1 px-3'
+                  >
+                    <TbBrandReddit className='text-xl' /> Share
+                  </a>
+                  <a
+                    href='www.facebook.com'
+                    target='_blank'
+                    title='Share on Facebook'
+                    className='bg-[#e9483d] font-medium text-white inline-flex items-center gap-1 rounded-sm py-1 px-3'
+                  >
+                    <FaFlipboard className='text-xl' /> Share
+                  </a>
+                  <a
+                    href='www.facebook.com'
+                    target='_blank'
+                    title='Share on Facebook'
+                    className='bg-[#42484e] font-medium text-white inline-flex items-center gap-1 rounded-sm py-1 px-3'
+                  >
+                    <FiLink className='text-xl' /> Copy
+                  </a>
+                  <a
+                    href='www.facebook.com'
+                    target='_blank'
+                    title='Share on Facebook'
+                    className='bg-[#bdc3cc] font-medium text-white inline-flex items-center gap-1 rounded-sm py-1 px-3'
+                  >
+                    <MdEmail className='text-xl' /> Email
+                  </a>
+                </div>
+
+                <div className='m-0 p-0'>
+                  <p className='text-xl font-bold'>Related Topics</p>
+                  <ul className='uppercase text-xs font-medium flex items-center flex-wrap gap-2'>
+                    <li className='bg-gray-400/60 rounded-sm py-1 px-2'>
+                      tech
+                    </li>
+                    <li className='bg-gray-400/60 rounded-sm py-1 px-2'>
+                      one-piece
+                    </li>
+                  </ul>
+                </div>
+
+                <div className='m-0 p-0'>
+                  <p className='text-xl font-bold'>About The Author</p>
+                  <p className='flex items-center gap-1 text-xs'>
+                    <span className='font-medium'>Shikhar Mehrotra</span>{' '}
+                    <span>(384 Articles Published)</span>
+                  </p>
+                  <p>
+                    Fascinated by companies like Apple and Samsung, Shikhar has
+                    covered consumer tech for three years. His favorite topics
+                    include how-to explainers, guides, and features with a
+                    helpful point of view that makes tech ...
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
 
           <section className='flex-1 sticky top-0 flex flex-col gap-10 md:w-[20rem]'>
             <div>
@@ -76,8 +171,6 @@ console.log('data', props?.post_data);
             </div>
           </section>
         </div>
-
-        <section></section>
       </section>
     </main>
   );

@@ -13,22 +13,27 @@ import {
   FaTwitterSquare,
   FaYoutubeSquare,
 } from 'react-icons/fa';
+import { GetStaticProps, InferGetServerSidePropsType } from 'next';
+import { AllPostData } from '@/utils/query';
 
-export default function Home() {
+export default function Home(props: InferGetServerSidePropsType<typeof getStaticProps>) {
+
+
+  console.log(props?.data)
   return (
     <React.Fragment>
       <Hero />
 
       <main className='flex flex-col gap-5 pb-10'>
-        <div className='w-full h-full bg-black/70 flex flex-col lg:flex-row gap-5 px-4 lg:px-6 xl:px-20 py-5'>
+        <div className='w-full lg:h-[30rem] bg-black/70 flex flex-col lg:flex-row gap-5 px-4 lg:px-6 xl:px-20 py-5'>
           <ul className='flex'>
-            {data?.slice(0, 1)?.map((data, index) => (
+            {props?.data?.slice(0, 1)?.map((data, index) => (
               <ImageCard key={index} data={data} />
             ))}
           </ul>
 
           <ul className='grid sm:grid-cols-2 gap-4'>
-            {data?.slice(1, 5)?.map((data, index) => (
+            {props?.data?.slice(1, 5)?.map((data, index) => (
               <ImageCard class={'h-full'} key={index} data={data} />
             ))}
           </ul>
@@ -102,3 +107,14 @@ export default function Home() {
     </React.Fragment>
   );
 }
+
+export const getStaticProps: GetStaticProps<{
+  data: any[];
+}> = async () => {
+  const data: any[] = await AllPostData();
+
+  return {
+    props: JSON.parse(JSON.stringify({ data })),
+    revalidate: 10,
+  };
+};
