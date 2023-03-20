@@ -7,10 +7,12 @@ import { Breadcrumb, ImageTextCard, Layout, SocialButtonLinks } from '@/componen
 import { data } from '@/utils/services';
 import { PortableText } from '@portabletext/react';
 import moment from 'moment';
+import Link from 'next/link'
 
 const Post = (props: InferGetServerSidePropsType<typeof getStaticProps>) => {
   const router = useRouter();
   const mimeType = props?.post_data?.image?.split('.')?.slice(-1)[0];
+
   if (router.isFallback) return <p>404</p>;
 
   return (
@@ -28,8 +30,13 @@ const Post = (props: InferGetServerSidePropsType<typeof getStaticProps>) => {
     >
       <main className='max_screen:w-full max_screen:px-4 px-4 xl:w-[80rem] mx-auto pb-10'>
         <Breadcrumb>
-          <span>Home</span>
-          <span>Movies</span>
+          <Link href={`/`}>Home</Link>
+          <Link href={`/categories/${props?.post_data?.category?.title}`}>
+            {props?.post_data?.category.title}
+          </Link>
+          {/* <Link href={`/categories/${props?.post_data?.slug?.current}`}>
+            {props?.post_data?.title}
+          </Link> */}
         </Breadcrumb>
         <div className='flex flex-col gap-2'>
           <h1 className='text-4xl font-bold capitalize tracking-tighter leading-none'>

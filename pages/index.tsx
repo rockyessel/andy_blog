@@ -64,13 +64,27 @@ export default function Home(
             </div>
 
             <div>
-              <h2>Anime</h2>
+              <h2 className='text-xl font-bold'>Anime</h2>
               <ul className='grid grid-cols-1 divide-y-[1px]'>
                 {props?.data
                   ?.slice(0, 5)
                   ?.map(
                     (data, index) =>
                       data.category?.title === 'Anime' && (
+                        <ImageTextDescCard key={index} data={data} />
+                      )
+                  )}
+              </ul>
+            </div>
+
+            <div>
+              <h2 className='text-xl font-bold'>Technology</h2>
+              <ul className='grid grid-cols-1 divide-y-[1px]'>
+                {props?.data
+                  ?.slice(0, 5)
+                  ?.map(
+                    (data, index) =>
+                      data.category?.title === 'Technology' && (
                         <ImageTextDescCard key={index} data={data} />
                       )
                   )}

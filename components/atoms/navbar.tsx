@@ -1,23 +1,14 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React from 'react';
 import { FaTimes, FaSearch, FaBars } from 'react-icons/fa';
 
 const Navbar = () => {
   const [showMenu, setShowMenu] = React.useState<boolean>(false);
   const [showSearchBar, setShowSearchBar] = React.useState<boolean>(false);
-  const NavItem = [
-    'Reviews',
-    'Movies',
-    'Tech',
-    'Gaming',
-    'Comics',
-    'Anime',
-    'Lyrics',
-    'News',
-    'Contact',
-    'About',
-  ];
+
+  const isPath = useRouter().asPath === '/';
 
   const handleState = () => {
     setShowMenu((prev) => !prev);
@@ -27,12 +18,22 @@ const Navbar = () => {
   };
 
   return (
-    <header className='w-full px-6 py-5 flex items-center gap-20 justify-between bg-gray-900 text-white'>
+    <header
+      className={`w-full px-6 py-5 flex items-center gap-20 justify-between  text-white ${
+        !isPath ? 'bg-gray-900' : 'bg-gray-900/50'
+      }`}
+    >
       {/* Logo & Search Bar */}
       <div className='w-full flex items-center gap-5'>
         {/* Logo */}
         <span className='text-3xl font-bold'>
-          <Image src='/logo.png' width={1000} height={1000} className='w-16' alt='' />
+          <Image
+            src='/logo.png'
+            width={1000}
+            height={1000}
+            className='w-16'
+            alt=''
+          />
         </span>
 
         {/* Search Bar */}
@@ -74,8 +75,9 @@ const Navbar = () => {
         </ul>
 
         <ul className='flex items-center gap-5'>
-          <li>Register</li>
-          <li className='rounded-md bg-white text-black px-4 py-2'>Login</li>
+          <li className='rounded-md bg-white text-black px-4 py-2'>
+            Write with us
+          </li>
         </ul>
       </nav>
 
@@ -110,11 +112,8 @@ const Navbar = () => {
             <li className='hover:rounded-md hover:bg-white hover:text-black px-4 py-2'>
               Contact
             </li>
-            <li className='hover:rounded-md hover:bg-white hover:text-black px-4 py-2'>
-              Register
-            </li>
             <li className='rounded-md bg-white text-black px-4 py-2 hover:bg-blue-700 hover:text-white'>
-              Login
+              Write with us
             </li>
           </ul>
         </nav>
