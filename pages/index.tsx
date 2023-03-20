@@ -1,27 +1,11 @@
 import React from 'react';
-import {
-  Hero,
-  Layout,
-  ImageCard,
-  ImageTextCard,
-  ImageTextDescCard,
-} from '@/components';
+import { Hero, Layout, ImageCard, ImageTextCard, ImageTextDescCard } from '@/components';
 import { data } from '@/utils/services';
-import Image from 'next/image';
-import {
-  FaFacebookSquare,
-  FaInstagramSquare,
-  FaTwitterSquare,
-  FaYoutubeSquare,
-} from 'react-icons/fa';
 import { GetStaticProps, InferGetServerSidePropsType } from 'next';
 import { AllPostData } from '@/utils/query';
 import { PostProps } from '@/interface';
 
-export default function Home(
-  props: InferGetServerSidePropsType<typeof getStaticProps>
-) {
-  console.log(props?.data);
+export default function Home( props: InferGetServerSidePropsType<typeof getStaticProps>) {
   return (
     <Layout
       description={''}

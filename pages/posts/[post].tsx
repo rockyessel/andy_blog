@@ -32,11 +32,8 @@ const Post = (props: InferGetServerSidePropsType<typeof getStaticProps>) => {
         <Breadcrumb>
           <Link href={`/`}>Home</Link>
           <Link href={`/categories/${props?.post_data?.category?.title}`}>
-            {props?.post_data?.category.title}
-          </Link>
-          {/* <Link href={`/categories/${props?.post_data?.slug?.current}`}>
-            {props?.post_data?.title}
-          </Link> */}
+            {props?.post_data?.category?.title}
+            </Link>
         </Breadcrumb>
         <div className='flex flex-col gap-2'>
           <h1 className='text-4xl font-bold capitalize tracking-tighter leading-none'>
