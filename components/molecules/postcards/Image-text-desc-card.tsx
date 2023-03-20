@@ -22,7 +22,7 @@ const ImageTextDescCard = ({ data }: { data: PostProps }) => {
           <div className='px-3 py-3 flex flex-col gap-2'>
             <header className='flex flex-col gap-1'>
               <span className='text-sm text-yellow-500'>
-                {data?.categories?.title}
+                {data?.category?.title}
               </span>
               <h2 className='capitalize font-bold md:text-2xl lg:text-3xl screen_fold:text-lg leading-none tracking-tighter'>
                 {data?.title}

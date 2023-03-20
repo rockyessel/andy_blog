@@ -29,7 +29,7 @@ export const PostDetailsData = async (post = '') => {
     },
   },
   body,
-  categories->{
+  category->{
   title,
   slug{
     current,
@@ -64,7 +64,7 @@ export const AllPostData = async () => {
     },
   },
   body,
-  categories->{
+  category->{
   title,
   slug{
     current,

@@ -116,6 +116,20 @@ export interface CodeProps {
   language: string;
 }
 
+export interface DefaultMetaDataProps {
+  description: string;
+  title: string;
+  image: string;
+  type: string;
+  alt: string;
+  keywords: string;
+  publishedAt: string;
+  updatedAt: string;
+  MIME: string;
+  author_name: string;
+}
+
+
 export interface PostProps {
   _createdAt: string;
   _id: string;
@@ -128,7 +142,7 @@ export interface PostProps {
     };
   };
   body: BodyProps;
-  categories: {
+  category: {
     title: string;
     slug: {
       current: string;
@@ -145,7 +159,6 @@ export interface PostProps {
     title: string;
   }[];
   title: string;
-
 }
 
 export interface CommentUserProps {

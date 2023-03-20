@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   Hero,
+  Layout,
   ImageCard,
   ImageTextCard,
   ImageTextDescCard,
@@ -17,12 +18,23 @@ import { GetStaticProps, InferGetServerSidePropsType } from 'next';
 import { AllPostData } from '@/utils/query';
 import { PostProps } from '@/interface';
 
-export default function Home(props: InferGetServerSidePropsType<typeof getStaticProps>) {
-
-
-  console.log(props?.data)
+export default function Home(
+  props: InferGetServerSidePropsType<typeof getStaticProps>
+) {
+  console.log(props?.data);
   return (
-    <React.Fragment>
+    <Layout
+      description={''}
+      title={''}
+      image={''}
+      type={''}
+      alt={''}
+      keywords={''}
+      publishedAt={''}
+      updatedAt={''}
+      MIME={''}
+      author_name={''}
+    >
       <Hero />
 
       <main className='flex flex-col gap-5 pb-10'>
@@ -54,9 +66,14 @@ export default function Home(props: InferGetServerSidePropsType<typeof getStatic
             <div>
               <h2>Anime</h2>
               <ul className='grid grid-cols-1 divide-y-[1px]'>
-                {props?.data?.slice(0, 3)?.map((data, index) => (
-                  data.categories?.title === 'Anime' && <ImageTextDescCard key={index} data={data} />
-                ))}
+                {props?.data
+                  ?.slice(0, 5)
+                  ?.map(
+                    (data, index) =>
+                      data.category?.title === 'Anime' && (
+                        <ImageTextDescCard key={index} data={data} />
+                      )
+                  )}
               </ul>
             </div>
           </section>
@@ -105,7 +122,7 @@ export default function Home(props: InferGetServerSidePropsType<typeof getStatic
           </section>
         </section>
       </main>
-    </React.Fragment>
+    </Layout>
   );
 }
 
