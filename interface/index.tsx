@@ -151,6 +151,8 @@ export interface PostProps {
   description: string;
   image: string;
   caption: string;
+  featured: boolean;
+  recommended: boolean;
   publishedAt: string;
   slug: {
     current: string;

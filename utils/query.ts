@@ -17,6 +17,8 @@ export const PostDetailsData = async (post = '') => {
   const query = `*[_type == 'post' && slug.current == '${post}'][0]{
     title,
     caption,
+    featured,
+    recommended,
     description,
   _createdAt,
   _id,
@@ -53,6 +55,8 @@ export const AllPostData = async () => {
   const query = `*[_type == 'post'][]{
     title,
     description,
+    featured,
+    recommended,
   _createdAt,
   _id,
   _updatedAt,

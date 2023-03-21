@@ -34,7 +34,7 @@ export default function Home(
       <Hero />
 
       <main className='flex flex-col gap-5 pb-10'>
-        <div className='w-full lg:h-[30rem] bg-black/70 flex flex-col lg:flex-row gap-5 px-4 lg:px-6 xl:px-20 py-5'>
+        <section className='w-full lg:h-[30rem] bg-black/70 flex flex-col lg:flex-row gap-5 px-4 lg:px-6 xl:px-20 py-5'>
           <ul className='flex'>
             {props?.data?.slice(0, 1)?.map((data, index) => (
               <ImageCard key={index} data={data} />
@@ -46,9 +46,9 @@ export default function Home(
               <ImageCard class={'h-full'} key={index} data={data} />
             ))}
           </ul>
-        </div>
+        </section>
 
-        <section className='flex flex-col lg:flex-row justify-between px-4 lg:px-6 xl:px-20 py-5'>
+        <section className='flex flex-col lg:flex-row gap-5 lg:gap-3 justify-between px-4 lg:px-6 xl:px-20 py-5'>
           <section className='flex flex-col gap-5'>
             <div>
               <h2 className='text-xl font-bold'>Recent</h2>
@@ -122,26 +122,50 @@ export default function Home(
 
           <section className='lg:w-[19rem] xl:w-[23rem]'>
             <div>
-              <h3 className='text-xl font-bold'>TRENDING</h3>
+              <h3 className='text-xl font-bold'>Featured</h3>
               <ul className='grid screen_fold:grid-cols-1 grid-cols-2 lg:grid-cols-1 divide-y-[1px]'>
-                {data?.slice(0, 4)?.map((data, index) => (
-                  <ImageTextCard
-                    mainClass={`flex-col m-1`}
-                    class={`h-[10rem] object-cover object-top`}
-                    key={index}
-                    data={data}
-                  />
-                ))}
+                {props?.data
+                  ?.sort(
+                    (a, b) =>
+                      new Date(b.publishedAt).getTime() -
+                      new Date(a.publishedAt).getTime()
+                  )
+                  ?.slice(0, 4)
+                  ?.map(
+                    (data, index) =>
+                      data?.featured === true && (
+                        <ImageTextCard
+                          mainClass={`flex-col m-1`}
+                          class={`h-[10rem] object-cover object-top`}
+                          key={index}
+                          data={data}
+                        />
+                      )
+                  )}
               </ul>
             </div>
 
             <div className='flex flex-col gap-2 sticky top-0'>
               <div>
-                <h3 className='text-xl font-bold'>TRENDING</h3>
+                <h3 className='text-xl font-bold'>Recommended</h3>
                 <ul className='grid grid-cols-1 divide-y-[1px]'>
-                  {data?.slice(0, 3)?.map((data, index) => (
-                    <ImageTextCard class={`w-[5rem]`} key={index} data={data} />
-                  ))}
+                  {props?.data
+                    ?.sort(
+                      (a, b) =>
+                        new Date(b.publishedAt).getTime() -
+                        new Date(a.publishedAt).getTime()
+                    )
+                    // ?.slice(0, 3)
+                    ?.map(
+                      (data, index) =>
+                        data?.recommended === true && (
+                          <ImageTextCard
+                            class={`w-[5rem]`}
+                            key={index}
+                            data={data}
+                          />
+                        )
+                    )}
                 </ul>
               </div>
 

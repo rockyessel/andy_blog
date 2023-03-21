@@ -1,10 +1,11 @@
 import React from 'react';
 import Image from 'next/image';
+import { PostProps } from '@/interface';
 
 export interface ImageTextCardProps {
   mainClass?: string;
   class?: string;
-  data: any;
+  data: PostProps;
 }
 
 const ImageTextCard = (props: ImageTextCardProps) => {
@@ -19,7 +20,7 @@ const ImageTextCard = (props: ImageTextCardProps) => {
           alt=''
         />
         <h3 className='capitalize w-fit font-medium text-lg leading-none tracking-tighter px-1 py-2'>
-          {props?.data?.name}
+          {props?.data?.title}
         </h3>
       </div>
     </div>

@@ -1,19 +1,30 @@
-import { GetStaticProps, GetStaticPaths, InferGetServerSidePropsType } from 'next';
-import { CommonPathProps, PostDetailsData } from '@/utils/query';
-import { CommonPath, Params } from '@/interface';
+import {
+  GetStaticProps,
+  GetStaticPaths,
+  InferGetServerSidePropsType,
+} from 'next';
+import { AllPostData, CommonPathProps, PostDetailsData } from '@/utils/query';
+import { CommonPath, Params, PostProps } from '@/interface';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
-import { Breadcrumb, ImageTextCard, Layout, SocialButtonLinks } from '@/components';
+import {
+  Breadcrumb,
+  ImageTextCard,
+  Layout,
+  SocialButtonLinks,
+} from '@/components';
 import { data } from '@/utils/services';
 import { PortableText } from '@portabletext/react';
 import moment from 'moment';
-import Link from 'next/link'
+import Link from 'next/link';
 
 const Post = (props: InferGetServerSidePropsType<typeof getStaticProps>) => {
   const router = useRouter();
   const mimeType = props?.post_data?.image?.split('.')?.slice(-1)[0];
 
   if (router.isFallback) return <p>404</p>;
+
+  console.log(props);
 
   return (
     <Layout
@@ -31,17 +42,17 @@ const Post = (props: InferGetServerSidePropsType<typeof getStaticProps>) => {
       <main className='max_screen:w-full max_screen:px-4 px-4 xl:w-[80rem] mx-auto pb-10'>
         <Breadcrumb>
           <Link href={`/`}>Home</Link>
-          <Link href={`/categories/${props?.post_data?.category?.slug?.current}`}>
+          <Link
+            href={`/categories/${props?.post_data?.category?.slug?.current}`}
+          >
             {props?.post_data?.category?.title}
-            </Link>
+          </Link>
         </Breadcrumb>
         <div className='flex flex-col gap-2'>
           <h1 className='text-4xl font-bold capitalize tracking-tighter leading-none'>
             {props?.post_data?.title}
           </h1>
-          <p className='text-lg'>
-           {props.post_data?.caption}
-          </p>
+          <p className='text-lg'>{props.post_data?.caption}</p>
 
           <div className='inline-flex items-center gap-1 text-xs uppercase'>
             <p>
@@ -83,7 +94,7 @@ const Post = (props: InferGetServerSidePropsType<typeof getStaticProps>) => {
                   />
 
                   <div className='m-0 p-0'>
-                    <p className='text-xl font-bold'>Related Topics</p>
+                    <p className='text-xl font-bold'>Related Tags</p>
                     <ul className='uppercase text-xs font-medium flex items-center flex-wrap gap-2'>
                       <li className='bg-gray-400/60 rounded-sm py-1 px-2'>
                         tech
@@ -97,14 +108,11 @@ const Post = (props: InferGetServerSidePropsType<typeof getStaticProps>) => {
                   <div className='m-0 p-0'>
                     <p className='text-xl font-bold'>About The Author</p>
                     <p className='flex items-center gap-1 text-xs'>
-                      <span className='font-medium'>Shikhar Mehrotra</span>
+                      <span className='font-medium'>{props?.post_data?.author?.name}</span>
                       <span>(384 Articles Published)</span>
                     </p>
                     <p>
-                      Fascinated by companies like Apple and Samsung, Shikhar
-                      has covered consumer tech for three years. His favorite
-                      topics include how-to explainers, guides, and features
-                      with a helpful point of view that makes tech...
+                      <PortableText value={props?.post_data?.author?.bio} />
                     </p>
                   </div>
                 </div>
@@ -113,11 +121,28 @@ const Post = (props: InferGetServerSidePropsType<typeof getStaticProps>) => {
 
             <section className='flex-1 sticky top-0 flex flex-col gap-10 md:w-[20rem]'>
               <div>
-                <h3 className='text-xl font-bold'>TRENDING</h3>
+                <h3 className='text-xl font-bold'>
+                  More on {props?.post_data?.category?.title}
+                </h3>
                 <ul className='grid grid-cols-1 divide-y-[1px]'>
-                  {data?.slice(0, 3)?.map((data, index) => (
-                    <ImageTextCard class={`w-[5rem]`} key={index} data={data} />
-                  ))}
+                  {props?.all_post
+                    ?.sort(
+                      (a, b) =>
+                        new Date(b.publishedAt).getTime() -
+                        new Date(a.publishedAt).getTime()
+                    )
+                    ?.map(
+                      (data, index) =>
+                        data?.featured === true &&
+                        data?.category?.title ===
+                          props.post_data.category.title && (
+                          <ImageTextCard
+                            class={`w-[5rem]`}
+                            key={index}
+                            data={data}
+                          />
+                        )
+                    )}
                 </ul>
               </div>
             </section>
@@ -145,17 +170,22 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
-export const getStaticProps: GetStaticProps<{ post_data: any }> = async (
-  context
-) => {
+export const getStaticProps: GetStaticProps<{
+  post_data: PostProps;
+  all_post: PostProps[];
+}> = async (context) => {
   const { post }: any = context.params as Params;
 
-  const post_data: any = await PostDetailsData(post);
+  const post_data: PostProps = await PostDetailsData(post);
+  const all_post: PostProps[] = await AllPostData();
 
-  if (!post_data) return { notFound: true };
+  if (!post_data || !all_post) return { notFound: true };
 
   return {
-    props: { post_data: JSON.parse(JSON.stringify(post_data)) },
+    props: {
+      all_post: JSON.parse(JSON.stringify(all_post)),
+      post_data: JSON.parse(JSON.stringify(post_data)),
+    },
     revalidate: 10,
   };
 };
