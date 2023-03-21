@@ -138,7 +138,17 @@ export interface AllTopicsProps {
     current: string;
   };
 }
-
+export interface AllCategoryProps {
+  _createdAt: string;
+  _id: string;
+  _rev: string;
+  _type: string;
+  title: string;
+  slug: {
+    current: string;
+  };
+  description: string;
+}
 
 export interface SpecificCategoryProps {
   title: string;

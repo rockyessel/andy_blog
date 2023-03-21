@@ -1,3 +1,5 @@
+import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 import {
   FaFacebookSquare,
@@ -9,7 +11,18 @@ import {
 const Footer = () => {
   return (
     <footer className='bg-black flex text-white flex-col gap-5 justify-center items-center w-full h-auto text-center capitalize py-5'>
-      <p className='text-4xl font-extrabold'>lOGO</p>
+      <Link href='/' className='text-4xl font-extrabold'>
+        <span className='text-3xl font-bold'>
+          <Image
+            src='/logo.png'
+            width={1000}
+            height={1000}
+            className='w-16'
+            alt=''
+          />
+        </span>
+      </Link>
+
       <p>
         The world&apos;s defining voice in music and pop culture: breaking
         what&apos;s new and what&apos;s next since 1952

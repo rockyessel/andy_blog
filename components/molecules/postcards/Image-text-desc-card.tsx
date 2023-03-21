@@ -9,14 +9,16 @@ const ImageTextDescCard = ({ data }: { data: PostProps }) => {
     <li className='py-5'>
       <Link href={`/posts/${data?.slug?.current}`}>
         <div className='flex flex-col items-center md:flex-row lg:max-w-3xl xl:max-w-4xl'>
-          <Image
-            className='w-full md:w-[20rem] lg:w-[25rem] lg:h-[13rem] object-cover object-top'
-            width={1000}
-            height={1000}
-            src={data?.image}
-            alt='Deadpool'
-            title='Deadpool'
-          />
+          <div className='w-full md:w-[20rem] lg:w-[100rem] h-[15rem]'>
+            <Image
+              className='w-full h-full object-cover object-top'
+              width={1000}
+              height={1000}
+              src={data?.image}
+              alt={data?.title}
+              title={data?.title}
+            />
+          </div>
           <div className='px-3 py-3 flex flex-col gap-2'>
             <header className='flex flex-col gap-1'>
               <Link href={`/categories/${data?.category?.slug?.current}`}>

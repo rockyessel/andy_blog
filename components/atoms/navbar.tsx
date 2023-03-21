@@ -27,16 +27,15 @@ const Navbar = () => {
       <div className='w-full flex items-center gap-5'>
         {/* Logo */}
         <Link href='/'>
-        <span className='text-3xl font-bold'>
-          <Image
-            src='/logo.png'
-            width={1000}
-            height={1000}
-            className='w-16'
-            alt=''
-          />
-        </span>
-
+          <span className='text-3xl font-bold'>
+            <Image
+              src='/logo.png'
+              width={1000}
+              height={1000}
+              className='w-16'
+              alt=''
+            />
+          </span>
         </Link>
         {/* Search Bar */}
         <div
@@ -70,9 +69,15 @@ const Navbar = () => {
       {/* Desktop Menu */}
       <nav className='w-full hidden md:flex items-center gap-10 justify-between font-medium'>
         <ul className='flex items-center gap-5'>
-          <li>Movies</li>
-          <li>Series</li>
-          <li>Anime</li>
+          <li>
+            <Link href='/categories/movies'>Movies</Link>
+          </li>
+          <li>
+            <Link href='/categories/anime'>Anime</Link>
+          </li>
+          <li>
+            <Link href='/categories'>Categories</Link>
+          </li>
           <li>Contact</li>
         </ul>
 

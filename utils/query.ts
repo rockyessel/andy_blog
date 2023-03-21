@@ -136,3 +136,11 @@ export const SpecificCategory = async (category = '') => {
 
   return result;
 };
+
+export const AllCategory = async () => {
+  const query = `*[_type == 'category']`;
+
+  const result = await client.fetch(query);
+
+  return result;
+};
