@@ -10,11 +10,8 @@ import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { AllPostData, AllTopics } from '@/utils/query';
 import { AllTopicsProps, PostProps } from '@/interface';
 
-export default function Home(
-  props: InferGetServerSidePropsType<typeof getServerSideProps>
-) {
+export default function Home( props: InferGetServerSidePropsType<typeof getServerSideProps> ) {
 
-  console.log(props)
   return (
     <Layout
       description={''}

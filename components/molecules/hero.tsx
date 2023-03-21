@@ -3,14 +3,57 @@ import { FaPlay } from 'react-icons/fa';
 import Navbar from '../atoms/navbar';
 
 const Hero = () => {
-  const homeSlider = ['c', 'c', 'c'];
+  const homeSlider: any[] = [
+    {
+      title: 'Black Panther: Wakanda Forever',
+      star: '⭐ 7.5/10',
+      image: '/g.jpg',
+      description: ` Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                    Fugiat repellat voluptatibus nihil suscipit nemo ab, dolorem
+                    sed reprehenderit, illo magni quos assumenda accusamus
+                    dolores porro nostrum voluptas ipsam dolorum nulla? Lorem
+                    ipsum, dolor sit amet consectetur adipisicing elit. Fugiat
+                    repellat voluptatibus nihil suscipit nemo ab, dolorem sed
+                    reprehenderit, illo magni quos`,
+    },
+    {
+      title: 'The Airby Blog',
+      star: '⭐ 7.5/10',
+      image: '/logo.png',
+      description: ` Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                    Fugiat repellat voluptatibus nihil suscipit nemo ab, dolorem
+                    sed reprehenderit, illo magni quos assumenda accusamus
+                    dolores porro nostrum voluptas ipsam dolorum nulla? Lorem
+                    ipsum, dolor sit amet consectetur adipisicing elit. Fugiat
+                    repellat voluptatibus nihil suscipit nemo ab, dolorem sed
+                    reprehenderit, illo magni quos`,
+    },
+    {
+      title: 'The Deadpool',
+      star: '⭐ 7.5/10',
+      image: '/deadpool.png',
+      description: ` Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                    Fugiat repellat voluptatibus nihil suscipit nemo ab, dolorem
+                    sed reprehenderit, illo magni quos assumenda accusamus
+                    dolores porro nostrum voluptas ipsam dolorum nulla? Lorem
+                    ipsum, dolor sit amet consectetur adipisicing elit. Fugiat
+                    repellat voluptatibus nihil suscipit nemo ab, dolorem sed
+                    reprehenderit, illo magni quos`,
+    },
+  ];
 
-  const [currentSlider, setCurrentSlider] = React.useState(1);
+  console.log('homeSlider', homeSlider);
 
-  const imageLength = homeSlider.length;
-  const repeat = currentSlider === imageLength ? 1 : currentSlider + 1;
+  const [currentSlider, setCurrentSlider] = React.useState(0);
+
+  const imageLength = homeSlider.length - 1;
+
+  console.log('length', imageLength);
+  const repeat = currentSlider === imageLength ? 0 : currentSlider + 1;
+  console.log('repeat', repeat);
 
   const handleMoveDot = (index: number) => {
+    console.log('index', index)
     setCurrentSlider(index);
   };
 
@@ -22,30 +65,24 @@ const Hero = () => {
   }, [currentSlider, repeat]);
 
   return (
-    <>
+    <section className='flex flex-col mb-0 pb-0 gap-0  w-full h-full bg-black/60 relative '>
       {homeSlider?.map(
         (data, index) =>
-          data?.length === currentSlider && (
+          index === currentSlider && (
             <div
               key={index}
-              className='bg-[url("/g.jpg")] main animation_for_slider relative box-border overflow-hidden bg-no-repeat bg-cover w-full text-white'
+              className={`bg-[url('/g.jpg')] box-border overflow-hidden bg-no-repeat bg-cover h-full w-full text-white`}
             >
               <Navbar />
               <div className='bg-black/60 w-full h-[50vh] flex justify-center items-center py-10 md:py-40'>
                 {/* <Image className='w-full object-cover object-center' src='/g.jpg' width={1000} height={1000} alt='' /> */}
                 <div className='px-4 lg:px-6 xl:px-20 flex flex-col gap-2 md:mb-20 lg:text-2xl'>
-                  <span>⭐ 7.5/10</span>
+                  <span>{data?.star}</span>
                   <p className='text-2xl md:text-3xl lg:text-4xl lx:text-5xl font-bold'>
-                    Black Panther: Wakanda Forever
+                    {data?.title}
                   </p>
                   <p className='md:text-xl max-w-7xl lg:w-full'>
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                    Fugiat repellat voluptatibus nihil suscipit nemo ab, dolorem
-                    sed reprehenderit, illo magni quos assumenda accusamus
-                    dolores porro nostrum voluptas ipsam dolorum nulla? Lorem
-                    ipsum, dolor sit amet consectetur adipisicing elit. Fugiat
-                    repellat voluptatibus nihil suscipit nemo ab, dolorem sed
-                    reprehenderit, illo magni quos
+                    {data?.description}
                   </p>
                   <p className='text-yellow-600 font-medium'>
                     <span>Action</span> / <span>Adventure</span> /{' '}
@@ -63,13 +100,13 @@ const Hero = () => {
       )}
 
       <div className={'flex justify-center gap-3 relative bottom-[2rem]'}>
-        {Array.from({ length: imageLength }).map((dot, index) => {
+        {Array.from({ length: homeSlider?.length }).map((dot, index) => {
           return (
             <div
               key={index}
-              onClick={() => handleMoveDot(index + 1)}
+              onClick={() => handleMoveDot(index)}
               className={`${
-                currentSlider === index + 1
+                currentSlider === index
                   ? 'w-[3rem] h-2  bg-blue-500 transition-all duration-500 ease-in-out '
                   : 'w-[1rem] h-2'
               } rounded-md  bg-gray-200`}
@@ -77,7 +114,7 @@ const Hero = () => {
           );
         })}
       </div>
-    </>
+    </section>
   );
 };
 

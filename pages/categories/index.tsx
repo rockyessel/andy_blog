@@ -22,7 +22,9 @@ const Categories = (
         MIME={''}
         author_name={''}
       >
-        <main>hello</main>
+        <main className='w-full lg:h-[49.9vh] bg-black/70 flex flex-col lg:flex-row gap-5 px-4 lg:px-6 xl:px-20 py-5'>
+          
+        </main>
       </Layout>
     </>
   );
