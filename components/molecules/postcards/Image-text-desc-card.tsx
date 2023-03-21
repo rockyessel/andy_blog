@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
-import moment from 'moment'
+import moment from 'moment';
 import { PostProps } from '@/interface';
 
 const ImageTextDescCard = ({ data }: { data: PostProps }) => {
@@ -19,9 +19,11 @@ const ImageTextDescCard = ({ data }: { data: PostProps }) => {
           />
           <div className='px-3 py-3 flex flex-col gap-2'>
             <header className='flex flex-col gap-1'>
-              <span className='text-sm text-yellow-500'>
-                {data?.category?.title}
-              </span>
+              <Link href={`/categories/${data?.category?.slug?.current}`}>
+                <span className='text-sm text-yellow-500'>
+                  {data?.category?.title}
+                </span>
+              </Link>
               <h2 className='capitalize font-bold md:text-2xl lg:text-3xl screen_fold:text-lg leading-none tracking-tighter'>
                 {data?.title}
               </h2>

@@ -6,18 +6,15 @@ import {
   ImageTextCard,
   ImageTextDescCard,
 } from '@/components';
-import { data } from '@/utils/services';
-import { GetStaticProps, InferGetServerSidePropsType } from 'next';
-import { AllPostData } from '@/utils/query';
-import { PostProps } from '@/interface';
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
+import { AllPostData, AllTopics } from '@/utils/query';
+import { AllTopicsProps, PostProps } from '@/interface';
 
 export default function Home(
-  props: InferGetServerSidePropsType<typeof getStaticProps>
+  props: InferGetServerSidePropsType<typeof getServerSideProps>
 ) {
-  console.log(
-    'index data',
-    props?.data.map((d) => d.category.title)
-  );
+
+  console.log(props)
   return (
     <Layout
       description={''}
@@ -172,13 +169,13 @@ export default function Home(
               <div className='flex flex-col gap-4'>
                 <p className='text-xl font-bold'>Upcoming Movies</p>
                 <ul className='flex flex-col gap-5'>
-                  {data?.slice(0, 3)?.map((data, index) => (
+                  {props?.topics?.map((topic, index) => (
                     <li key={index} className='inline-flex items-center gap-2'>
                       <span className='py-1 font-extrabold px-3 border-[1px] border-black'>
                         {index + 1}
                       </span>
                       <span className='font-medium leading-none tracking-tighter w-full text-lg'>
-                        {data.name}
+                        {topic.title}
                       </span>
                     </li>
                   ))}
@@ -192,13 +189,13 @@ export default function Home(
   );
 }
 
-export const getStaticProps: GetStaticProps<{
-  data: PostProps[];
-}> = async () => {
+export const getServerSideProps: GetServerSideProps<{ data: PostProps[]; topics: AllTopicsProps[] }> = async () => {
   const data: PostProps[] = await AllPostData();
+  const topics: AllTopicsProps[] = await AllTopics();
+
+    if (!data || !topics) return { notFound: true };
 
   return {
-    props: JSON.parse(JSON.stringify({ data })),
-    revalidate: 10,
+    props: JSON.parse(JSON.stringify({data, topics })),
   };
 };

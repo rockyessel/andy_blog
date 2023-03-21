@@ -87,3 +87,52 @@ export const AllPostData = async () => {
 
   return result;
 };
+
+export const AllTopics = async () => {
+  const query = `*[_type == 'topics']`;
+
+  const result = await client.fetch(query);
+
+  return result;
+};
+
+export const SpecificCategory = async (category = '') => {
+  const query = `*[_type == "category" && slug.current == "${category}"]{
+  title,
+    slug {
+    current,
+    },
+  _id,
+  "post": *[_type == "post" && category->._id == ^._id][]{
+  author->{
+    name,
+    slug {
+    current,
+    },
+    "image": image.asset->url,
+  },
+    slug {
+    current,
+    },
+  "image": mainImage.asset->url,
+  category->{
+    title,
+    slug {
+    current,
+    },
+  },
+  body,
+  title,
+  featured,
+  recommended,
+  publishedAt,
+  _createdAt,
+  _updatedAt,
+  description,
+}
+}`;
+
+  const result = await client.fetch(query, { category });
+
+  return result;
+};

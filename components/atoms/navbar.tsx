@@ -26,6 +26,7 @@ const Navbar = () => {
       {/* Logo & Search Bar */}
       <div className='w-full flex items-center gap-5'>
         {/* Logo */}
+        <Link href='/'>
         <span className='text-3xl font-bold'>
           <Image
             src='/logo.png'
@@ -36,6 +37,7 @@ const Navbar = () => {
           />
         </span>
 
+        </Link>
         {/* Search Bar */}
         <div
           className={`w-full lg:bg-slate-500/70 rounded-md px-4 py-1 max-w-5xl group: flex items-center ${

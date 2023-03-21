@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { PostProps } from '@/interface';
+import Link from 'next/link';
 
 export interface ImageTextCardProps {
   mainClass?: string;
@@ -10,6 +11,7 @@ export interface ImageTextCardProps {
 
 const ImageTextCard = (props: ImageTextCardProps) => {
   return (
+    <Link href={`/posts/${props?.data?.slug?.current}`}>
     <div className={`py-2`}>
       <div className={`flex items-center ${props.mainClass}`}>
         <Image
@@ -24,6 +26,7 @@ const ImageTextCard = (props: ImageTextCardProps) => {
         </h3>
       </div>
     </div>
+    </Link>
   );
 };
 

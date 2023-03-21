@@ -3,3 +3,13 @@
 @tailwind utilities;
 
 @import url('https://fonts.googleapis.com/css2?family=Khand:wght@300;400;500;600;700&display=swap')
+
+.main {
+  width: 100%;
+  height: auto;
+  -webkit-transition: all 900ms ease-in;
+  -moz-transition: all 900ms ease-in;
+  -ms-transition: all 900ms ease-in;
+  -o-transition: all 900ms ease-in;
+  transition: all 900ms ease-in;
+}

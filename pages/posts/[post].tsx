@@ -170,10 +170,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
-export const getStaticProps: GetStaticProps<{
-  post_data: PostProps;
-  all_post: PostProps[];
-}> = async (context) => {
+export const getStaticProps: GetStaticProps<{ post_data: PostProps; all_post: PostProps[] }> = async (context) => {
   const { post }: any = context.params as Params;
 
   const post_data: PostProps = await PostDetailsData(post);
