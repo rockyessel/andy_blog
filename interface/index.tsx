@@ -129,7 +129,6 @@ export interface DefaultMetaDataProps {
   author_name: string;
 }
 
-
 export interface PostProps {
   _createdAt: string;
   _id: string;
@@ -151,6 +150,7 @@ export interface PostProps {
   };
   description: string;
   image: string;
+  caption: string;
   publishedAt: string;
   slug: {
     current: string;

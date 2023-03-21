@@ -20,7 +20,7 @@ const Navbar = () => {
   return (
     <header
       className={`w-full px-6 py-5 flex items-center gap-20 justify-between  text-white ${
-        !isPath ? 'bg-gray-900' : 'bg-gray-900/50'
+        !isPath ? 'bg-gray-600' : 'bg-gray-900/50'
       }`}
     >
       {/* Logo & Search Bar */}

@@ -5,8 +5,6 @@ import moment from 'moment'
 import { PostProps } from '@/interface';
 
 const ImageTextDescCard = ({ data }: { data: PostProps }) => {
-
-  console.log('data', data);
   return (
     <li className='py-5'>
       <Link href={`/posts/${data?.slug?.current}`}>

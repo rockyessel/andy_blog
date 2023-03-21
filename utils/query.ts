@@ -16,6 +16,7 @@ export const CommonPathProps = async (path: string = '') => {
 export const PostDetailsData = async (post = '') => {
   const query = `*[_type == 'post' && slug.current == '${post}'][0]{
     title,
+    caption,
     description,
   _createdAt,
   _id,

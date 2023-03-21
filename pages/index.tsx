@@ -1,11 +1,23 @@
 import React from 'react';
-import { Hero, Layout, ImageCard, ImageTextCard, ImageTextDescCard } from '@/components';
+import {
+  Hero,
+  Layout,
+  ImageCard,
+  ImageTextCard,
+  ImageTextDescCard,
+} from '@/components';
 import { data } from '@/utils/services';
 import { GetStaticProps, InferGetServerSidePropsType } from 'next';
 import { AllPostData } from '@/utils/query';
 import { PostProps } from '@/interface';
 
-export default function Home( props: InferGetServerSidePropsType<typeof getStaticProps>) {
+export default function Home(
+  props: InferGetServerSidePropsType<typeof getStaticProps>
+) {
+  console.log(
+    'index data',
+    props?.data.map((d) => d.category.title)
+  );
   return (
     <Layout
       description={''}
@@ -41,9 +53,15 @@ export default function Home( props: InferGetServerSidePropsType<typeof getStati
             <div>
               <h2 className='text-xl font-bold'>Recent</h2>
               <ul className='flex flex-col divide-y-[1px]'>
-                {props?.data?.slice(0, 3)?.map((data, index) => (
-                  <ImageTextDescCard key={index} data={data} />
-                ))}
+                {props?.data
+                  ?.sort(
+                    (a, b) =>
+                      new Date(b.publishedAt).getTime() -
+                      new Date(a.publishedAt).getTime()
+                  )
+                  ?.map((data, index) => (
+                    <ImageTextDescCard key={index} data={data} />
+                  ))}
               </ul>
             </div>
 
@@ -51,7 +69,11 @@ export default function Home( props: InferGetServerSidePropsType<typeof getStati
               <h2 className='text-xl font-bold'>Anime</h2>
               <ul className='grid grid-cols-1 divide-y-[1px]'>
                 {props?.data
-                  ?.slice(0, 5)
+                  ?.sort(
+                    (a, b) =>
+                      new Date(b.publishedAt).getTime() -
+                      new Date(a.publishedAt).getTime()
+                  )
                   ?.map(
                     (data, index) =>
                       data.category?.title === 'Anime' && (
@@ -65,10 +87,32 @@ export default function Home( props: InferGetServerSidePropsType<typeof getStati
               <h2 className='text-xl font-bold'>Technology</h2>
               <ul className='grid grid-cols-1 divide-y-[1px]'>
                 {props?.data
-                  ?.slice(0, 5)
+                  ?.sort(
+                    (a, b) =>
+                      new Date(b.publishedAt).getTime() -
+                      new Date(a.publishedAt).getTime()
+                  )
                   ?.map(
                     (data, index) =>
                       data.category?.title === 'Technology' && (
+                        <ImageTextDescCard key={index} data={data} />
+                      )
+                  )}
+              </ul>
+            </div>
+
+            <div>
+              <h2 className='text-xl font-bold'>Reality TV</h2>
+              <ul className='grid grid-cols-1 divide-y-[1px]'>
+                {props?.data
+                  ?.sort(
+                    (a, b) =>
+                      new Date(b.publishedAt).getTime() -
+                      new Date(a.publishedAt).getTime()
+                  )
+                  ?.map(
+                    (data, index) =>
+                      data.category?.title === 'Reality TV' && (
                         <ImageTextDescCard key={index} data={data} />
                       )
                   )}

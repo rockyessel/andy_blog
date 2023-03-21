@@ -31,7 +31,7 @@ const Post = (props: InferGetServerSidePropsType<typeof getStaticProps>) => {
       <main className='max_screen:w-full max_screen:px-4 px-4 xl:w-[80rem] mx-auto pb-10'>
         <Breadcrumb>
           <Link href={`/`}>Home</Link>
-          <Link href={`/categories/${props?.post_data?.category?.title}`}>
+          <Link href={`/categories/${props?.post_data?.category?.slug?.current}`}>
             {props?.post_data?.category?.title}
             </Link>
         </Breadcrumb>
@@ -40,9 +40,7 @@ const Post = (props: InferGetServerSidePropsType<typeof getStaticProps>) => {
             {props?.post_data?.title}
           </h1>
           <p className='text-lg'>
-            After the ending of Better Call Saul, it&apos;s hard to decide if
-            Saul Goodman was truly redeemed. Howard actor Patrick Fabian gives
-            his view.
+           {props.post_data?.caption}
           </p>
 
           <div className='inline-flex items-center gap-1 text-xs uppercase'>
