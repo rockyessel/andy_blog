@@ -1,20 +1,42 @@
+import { PostProps } from '@/interface';
+import { AllPostData } from '@/utils/query';
+import { GetStaticProps, InferGetServerSidePropsType } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { FaTimes, FaSearch, FaBars } from 'react-icons/fa';
 
-const Navbar = () => {
+const Navbar = (props: InferGetServerSidePropsType<typeof getStaticProps>) => {
   const [showMenu, setShowMenu] = React.useState<boolean>(false);
   const [showSearchBar, setShowSearchBar] = React.useState<boolean>(false);
+  const [filteredWord, setFilteredWord] = React.useState<PostProps[]>([]);
+  const [word, setWord] = React.useState<string>('');
 
   const isPath = useRouter().asPath === '/';
+
+  console.log('filteredWord', filteredWord);
+  console.log('navbar', props.data);
+  console.log('word', word);
 
   const handleState = () => {
     setShowMenu((prev) => !prev);
   };
   const handleStateSearch = () => {
     setShowSearchBar((prev) => !prev);
+  };
+  const handleWord = (event: any) => {
+    const searchWord: string = event.target.value.toLowerCase();
+    setWord(searchWord);
+    const filterWord: PostProps[] = props?.data?.filter((post) => {
+      return post.title.toLowerCase().includes(searchWord);
+    });
+
+    if (searchWord === '') {
+      setFilteredWord([]);
+    } else {
+      setFilteredWord(filterWord);
+    }
   };
 
   return (
@@ -24,7 +46,7 @@ const Navbar = () => {
       }`}
     >
       {/* Logo & Search Bar */}
-      <div className='w-full flex items-center gap-5'>
+      <div className='w-fit lg:w-full flex items-center gap-5'>
         {/* Logo */}
         <Link href='/'>
           <span className='text-3xl font-bold'>
@@ -39,13 +61,15 @@ const Navbar = () => {
         </Link>
         {/* Search Bar */}
         <div
-          className={`w-full lg:bg-slate-500/70 rounded-md px-4 py-1 max-w-5xl group: flex items-center ${
+          className={`w-full lg:bg-slate-500/70 rounded-md relative px-4 py-1 lg:max-w-5xl group: flex items-center ${
             showSearchBar ? 'bg-transparent' : ''
           }`}
         >
           <input
             type='text'
             name='search'
+            value={word}
+            onChange={handleWord}
             className={` w-full ${
               showSearchBar
                 ? 'block px-5 outline-none py-10 h-10 absolute top-0 left-0 bg-black'
@@ -53,6 +77,29 @@ const Navbar = () => {
             }`}
             placeholder='Search for movies, tv shows and people...'
           />
+
+          {filteredWord?.length && (
+            <ul className='bg-white text-black absolute top-[3.4rem] w-full right-0 h-[10rem] rounded-md'>
+              {filteredWord?.map((item, index) => (
+                <li
+                  key={index}
+                  className={`flex gap-2 items-center py-1 hover:bg-blue-200 w-full rounded px-1 active:bg-blue-400 cursor-pointer`}
+                >
+                  <Image
+                    width={100}
+                    height={100}
+                    src={item?.image}
+                    className={`w-14 h-14 rounded-md object-cover object-center`}
+                    alt=''
+                  />
+                  <div className={` text-sm`}>
+                    <span className={`font-bold`}>{item?.title}</span>
+                    <p className={`text-sm`}>{item?.description}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          )}
           <FaSearch
             onClick={handleStateSearch}
             className='text-2xl cursor-pointer'
@@ -67,7 +114,7 @@ const Navbar = () => {
       </div>
 
       {/* Desktop Menu */}
-      <nav className='w-full hidden md:flex items-center gap-10 justify-between font-medium'>
+      <nav className='w-full hidden md:flex items-center gap-1 xl:gap-10 font-medium'>
         <ul className='flex items-center gap-5'>
           <li>
             <Link href='/categories/movies'>Movies</Link>
@@ -78,12 +125,14 @@ const Navbar = () => {
           <li>
             <Link href='/categories'>Categories</Link>
           </li>
-          <li>Contact</li>
+          <li>
+            <Link href='/contact'>Contact</Link>
+          </li>
         </ul>
 
         <ul className='flex items-center gap-5'>
           <li className='rounded-md bg-white text-black px-4 py-2'>
-            Write with us
+            <Link href='/write-with-us'>Write with us</Link>
           </li>
         </ul>
       </nav>
@@ -130,3 +179,16 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+export const getStaticProps: GetStaticProps<{
+  data: PostProps[];
+}> = async () => {
+  const data: PostProps[] = await AllPostData();
+
+  if (!data) return { notFound: true };
+
+  return {
+    props: { data: JSON.parse(JSON.stringify(data)) },
+    revalidate: 10,
+  };
+};

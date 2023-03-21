@@ -65,7 +65,7 @@ const Hero = () => {
   }, [currentSlider, repeat]);
 
   return (
-    <section className='flex flex-col mb-0 pb-0 gap-0  w-full h-full bg-black/60 relative '>
+    <section className='flex flex-col mb-0 pb-0 gap-0  w-full h-full bg-black/70 relative '>
       {homeSlider?.map(
         (data, index) =>
           index === currentSlider && (
@@ -73,7 +73,7 @@ const Hero = () => {
               key={index}
               className={`bg-[url('/g.jpg')] box-border overflow-hidden bg-no-repeat bg-cover h-full w-full text-white`}
             >
-              <Navbar />
+              <Navbar data={[]} />
               <div className='bg-black/60 w-full h-[50vh] flex justify-center items-center py-10 md:py-40'>
                 {/* <Image className='w-full object-cover object-center' src='/g.jpg' width={1000} height={1000} alt='' /> */}
                 <div className='px-4 lg:px-6 xl:px-20 flex flex-col gap-2 md:mb-20 lg:text-2xl'>
