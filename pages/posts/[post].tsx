@@ -13,10 +13,10 @@ import {
   Layout,
   SocialButtonLinks,
 } from '@/components';
-import { data } from '@/utils/services';
 import { PortableText } from '@portabletext/react';
 import moment from 'moment';
 import Link from 'next/link';
+import Script from 'next/script';
 
 const Post = (props: InferGetServerSidePropsType<typeof getStaticProps>) => {
   const router = useRouter();
@@ -108,13 +108,38 @@ const Post = (props: InferGetServerSidePropsType<typeof getStaticProps>) => {
                   <div className='m-0 p-0'>
                     <p className='text-xl font-bold'>About The Author</p>
                     <p className='flex items-center gap-1 text-xs'>
-                      <span className='font-medium'>{props?.post_data?.author?.name}</span>
+                      <span className='font-medium'>
+                        {props?.post_data?.author?.name}
+                      </span>
                       <span>(384 Articles Published)</span>
                     </p>
                     <p>
                       <PortableText value={props?.post_data?.author?.bio} />
                     </p>
                   </div>
+                </div>
+
+                <div id='disqus_thread'>
+                  <Script id='my-script'>
+                    {`
+    var disqus_config = function () {
+    this.page.url = document.location.href;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = document.location.href.split(".app")[1]; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+  
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://airby.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();`}
+                  </Script>
+                  <noscript>
+                    Please enable JavaScript to view the{' '}
+                    <a href='https://disqus.com/?ref_noscript'>
+                      comments powered by Disqus.
+                    </a>
+                  </noscript>
                 </div>
               </div>
             </div>
@@ -170,7 +195,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
-export const getStaticProps: GetStaticProps<{ post_data: PostProps; all_post: PostProps[] }> = async (context) => {
+export const getStaticProps: GetStaticProps<{
+  post_data: PostProps;
+  all_post: PostProps[];
+}> = async (context) => {
   const { post }: any = context.params as Params;
 
   const post_data: PostProps = await PostDetailsData(post);

@@ -8,7 +8,6 @@ import React from 'react';
 const Categories = (
   props: InferGetServerSidePropsType<typeof getStaticProps>
 ) => {
-  console.log('categories', props?.categories);
   return (
     <>
       <Layout
@@ -41,7 +40,7 @@ export default Categories;
 
 export const getStaticProps: GetStaticProps<{
   categories: AllCategoryProps[];
-}> = async (context) => {
+}> = async () => {
   const categories: AllCategoryProps[] = await AllCategory();
 
   if (!categories) return { notFound: true };

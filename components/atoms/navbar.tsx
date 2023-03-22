@@ -1,42 +1,21 @@
 import { PostProps } from '@/interface';
-import { AllPostData } from '@/utils/query';
-import { GetStaticProps, InferGetServerSidePropsType } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { FaTimes, FaSearch, FaBars } from 'react-icons/fa';
 
-const Navbar = (props: InferGetServerSidePropsType<typeof getStaticProps>) => {
+const Navbar = () => {
   const [showMenu, setShowMenu] = React.useState<boolean>(false);
   const [showSearchBar, setShowSearchBar] = React.useState<boolean>(false);
-  const [filteredWord, setFilteredWord] = React.useState<PostProps[]>([]);
-  const [word, setWord] = React.useState<string>('');
 
   const isPath = useRouter().asPath === '/';
-
-  console.log('filteredWord', filteredWord);
-  console.log('navbar', props.data);
-  console.log('word', word);
 
   const handleState = () => {
     setShowMenu((prev) => !prev);
   };
   const handleStateSearch = () => {
     setShowSearchBar((prev) => !prev);
-  };
-  const handleWord = (event: any) => {
-    const searchWord: string = event.target.value.toLowerCase();
-    setWord(searchWord);
-    const filterWord: PostProps[] = props?.data?.filter((post) => {
-      return post.title.toLowerCase().includes(searchWord);
-    });
-
-    if (searchWord === '') {
-      setFilteredWord([]);
-    } else {
-      setFilteredWord(filterWord);
-    }
   };
 
   return (
@@ -68,8 +47,6 @@ const Navbar = (props: InferGetServerSidePropsType<typeof getStaticProps>) => {
           <input
             type='text'
             name='search'
-            value={word}
-            onChange={handleWord}
             className={` w-full ${
               showSearchBar
                 ? 'block px-5 outline-none py-10 h-10 absolute top-0 left-0 bg-black'
@@ -78,7 +55,7 @@ const Navbar = (props: InferGetServerSidePropsType<typeof getStaticProps>) => {
             placeholder='Search for movies, tv shows and people...'
           />
 
-          {filteredWord?.length && (
+          {/* {filteredWord?.length && (
             <ul className='bg-white text-black absolute top-[3.4rem] w-full right-0 h-[10rem] rounded-md'>
               {filteredWord?.map((item, index) => (
                 <li
@@ -99,7 +76,7 @@ const Navbar = (props: InferGetServerSidePropsType<typeof getStaticProps>) => {
                 </li>
               ))}
             </ul>
-          )}
+          )} */}
           <FaSearch
             onClick={handleStateSearch}
             className='text-2xl cursor-pointer'
@@ -179,16 +156,3 @@ const Navbar = (props: InferGetServerSidePropsType<typeof getStaticProps>) => {
 };
 
 export default Navbar;
-
-export const getStaticProps: GetStaticProps<{
-  data: PostProps[];
-}> = async () => {
-  const data: PostProps[] = await AllPostData();
-
-  if (!data) return { notFound: true };
-
-  return {
-    props: { data: JSON.parse(JSON.stringify(data)) },
-    revalidate: 10,
-  };
-};

@@ -1,8 +1,12 @@
 import React from 'react';
 import { FaPlay } from 'react-icons/fa';
 import Navbar from '../atoms/navbar';
+import { PostProps } from '@/interface';
 
 const Hero = () => {
+  const [filteredWord, setFilteredWord] = React.useState<PostProps[]>([]);
+  const [word, setWord] = React.useState<string>('');
+  const [currentSlider, setCurrentSlider] = React.useState(0);
   const homeSlider: any[] = [
     {
       title: 'Black Panther: Wakanda Forever',
@@ -42,9 +46,20 @@ const Hero = () => {
     },
   ];
 
-  console.log('homeSlider', homeSlider);
+  //   const handleWord = (event: any) => {
+  //   const searchWord: string = event.target.value.toLowerCase();
+  //   setWord(searchWord);
+  //   const filterWord: PostProps[] = props?.data?.filter((post) => {
+  //     return post.title.toLowerCase().includes(searchWord);
+  //   });
 
-  const [currentSlider, setCurrentSlider] = React.useState(0);
+  //   if (searchWord === '') {
+  //     setFilteredWord([]);
+  //   } else {
+  //     setFilteredWord(filterWord);
+  //   }
+  // };
+  
 
   const imageLength = homeSlider.length - 1;
 
@@ -73,7 +88,7 @@ const Hero = () => {
               key={index}
               className={`bg-[url('/g.jpg')] box-border overflow-hidden bg-no-repeat bg-cover h-full w-full text-white`}
             >
-              <Navbar data={[]} />
+              <Navbar  />
               <div className='bg-black/60 w-full h-[50vh] flex justify-center items-center py-10 md:py-40'>
                 {/* <Image className='w-full object-cover object-center' src='/g.jpg' width={1000} height={1000} alt='' /> */}
                 <div className='px-4 lg:px-6 xl:px-20 flex flex-col gap-2 md:mb-20 lg:text-2xl'>
