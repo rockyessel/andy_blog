@@ -164,7 +164,7 @@ export default function Home( props: InferGetServerSidePropsType<typeof getServe
               </div>
 
               <div className='flex flex-col gap-4'>
-                <p className='text-xl font-bold'>Upcoming Movies</p>
+                <p className='text-xl font-bold'>Upcoming Tpoics</p>
                 <ul className='flex flex-col gap-5'>
                   {props?.topics?.map((topic, index) => (
                     <li key={index} className='inline-flex items-center gap-2'>

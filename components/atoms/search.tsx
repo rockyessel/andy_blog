@@ -25,7 +25,7 @@ const Search = () => {
     const searchWord = event.target.value.toLowerCase();
     setWord(searchWord);
     const filterWord = searchData.filter((post) => {
-      return post.title.toLowerCase().includes(searchWord);
+      return post?.title.toLowerCase().includes(searchWord);
     });
     if (searchWord === '') {
       setFilteredWord([]);

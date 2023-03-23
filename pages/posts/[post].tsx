@@ -92,19 +92,6 @@ const Post = (props: InferGetServerSidePropsType<typeof getStaticProps>) => {
                     title={props?.post_data?.title}
                     slug={props?.post_data?.slug?.current}
                   />
-
-                  <div className='m-0 p-0'>
-                    <p className='text-xl font-bold'>Related Tags</p>
-                    <ul className='uppercase text-xs font-medium flex items-center flex-wrap gap-2'>
-                      <li className='bg-gray-400/60 rounded-sm py-1 px-2'>
-                        tech
-                      </li>
-                      <li className='bg-gray-400/60 rounded-sm py-1 px-2'>
-                        one-piece
-                      </li>
-                    </ul>
-                  </div>
-
                   <div className='m-0 p-0'>
                     <p className='text-xl font-bold'>About The Author</p>
                     <p className='flex items-center gap-1 text-xs'>
