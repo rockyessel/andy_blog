@@ -1,12 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
-import {
-  FaFacebookSquare,
-  FaInstagramSquare,
-  FaTwitterSquare,
-  FaYoutube,
-} from 'react-icons/fa';
+import { FaFacebookSquare, FaInstagramSquare, FaTwitterSquare, FaYoutube } from 'react-icons/fa';
 
 const Footer = () => {
   return (

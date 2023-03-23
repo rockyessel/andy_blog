@@ -1,18 +1,9 @@
-import {
-  GetStaticProps,
-  GetStaticPaths,
-  InferGetServerSidePropsType,
-} from 'next';
+import { GetStaticProps, GetStaticPaths, InferGetServerSidePropsType } from 'next';
 import { AllPostData, CommonPathProps, PostDetailsData } from '@/utils/query';
 import { CommonPath, Params, PostProps } from '@/interface';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
-import {
-  Breadcrumb,
-  ImageTextCard,
-  Layout,
-  SocialButtonLinks,
-} from '@/components';
+import { Breadcrumb, ImageTextCard, Layout, SocialButtonLinks } from '@/components';
 import { PortableText } from '@portabletext/react';
 import moment from 'moment';
 import Link from 'next/link';
@@ -23,8 +14,6 @@ const Post = (props: InferGetServerSidePropsType<typeof getStaticProps>) => {
   const mimeType = props?.post_data?.image?.split('.')?.slice(-1)[0];
 
   if (router.isFallback) return <p>404</p>;
-
-  console.log(props);
 
   return (
     <Layout
@@ -182,10 +171,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
-export const getStaticProps: GetStaticProps<{
-  post_data: PostProps;
-  all_post: PostProps[];
-}> = async (context) => {
+export const getStaticProps: GetStaticProps<{ post_data: PostProps; all_post: PostProps[] }> = async (context) => {
   const { post }: any = context.params as Params;
 
   const post_data: PostProps = await PostDetailsData(post);

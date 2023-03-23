@@ -3,11 +3,8 @@ import { AllCategoryProps } from '@/interface';
 import { AllCategory } from '@/utils/query';
 import { GetStaticProps, InferGetServerSidePropsType } from 'next';
 import Link from 'next/link';
-import React from 'react';
 
-const Categories = (
-  props: InferGetServerSidePropsType<typeof getStaticProps>
-) => {
+const Categories = ( props: InferGetServerSidePropsType<typeof getStaticProps> ) => {
   return (
     <>
       <Layout
@@ -38,9 +35,7 @@ const Categories = (
 
 export default Categories;
 
-export const getStaticProps: GetStaticProps<{
-  categories: AllCategoryProps[];
-}> = async () => {
+export const getStaticProps: GetStaticProps<{ categories: AllCategoryProps[] }> = async () => {
   const categories: AllCategoryProps[] = await AllCategory();
 
   if (!categories) return { notFound: true };

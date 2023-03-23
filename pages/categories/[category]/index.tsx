@@ -1,17 +1,11 @@
 import React from 'react';
 import { CommonPath, Params, SpecificCategoryProps } from '@/interface';
 import { CommonPathProps, SpecificCategory } from '@/utils/query';
-import {
-  GetStaticPaths,
-  GetStaticProps,
-  InferGetServerSidePropsType,
-} from 'next';
+import { GetStaticPaths, GetStaticProps, InferGetServerSidePropsType } from 'next';
 import { ImageCard, ImageTextDescCard, Layout } from '@/components';
 
-const Category = (
-  props: InferGetServerSidePropsType<typeof getStaticProps>
-) => {
-  console.log('Category', props);
+const Category = ( props: InferGetServerSidePropsType<typeof getStaticProps> ) => {
+  
 
   return (
     <>
@@ -113,9 +107,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
-export const getStaticProps: GetStaticProps<{
-  result: SpecificCategoryProps[];
-}> = async (context) => {
+export const getStaticProps: GetStaticProps<{ result: SpecificCategoryProps[] }> = async (context) => {
   const { category }: any = context.params as Params;
 
   const result: SpecificCategoryProps[] = await SpecificCategory(category);

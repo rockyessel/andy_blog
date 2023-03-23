@@ -5,7 +5,6 @@ import Link from 'next/link';
 import React from 'react';
 import { FaSearch, FaTimes } from 'react-icons/fa';
 
-interface Props {}
 
 const Search = () => {
   const [filteredWord, setFilteredWord] = React.useState<SearchDataProps[]>([]);

@@ -1,4 +1,3 @@
-import React from 'react';
 import { BsLinkedin, BsTwitter } from 'react-icons/bs';
 import { FaFlipboard } from 'react-icons/fa';
 import { FiLink } from 'react-icons/fi';
@@ -13,17 +12,9 @@ interface Props {
 }
 
 const handleCopy = (url: string) => {
-  navigator.clipboard.writeText(url).then(
-    () => {
-      console.log('Text copied to clipboard');
-    },
-    () => {
-      console.error('Unable to copy text to clipboard');
-    }
-  );
+  navigator.clipboard.writeText(url)
 };
 
-// screenrant.com
 const SocialButtonLinks = (props: Props) => {
   return (
     <div className='flex flex-wrap items-center justify-between'>
