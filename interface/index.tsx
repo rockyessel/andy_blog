@@ -156,3 +156,12 @@ export interface SpecificCategoryProps {
   _id: string;
   post: PostProps[];
 }
+
+export interface SearchDataProps {
+  title: string;
+  description: string;
+  image:string;
+  slug: {
+    current: string;
+  };
+}

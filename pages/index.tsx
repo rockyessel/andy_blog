@@ -25,7 +25,7 @@ export default function Home( props: InferGetServerSidePropsType<typeof getServe
       MIME={''}
       author_name={''}
     >
-      <Hero />
+      <Hero data={props?.data} />
 
       <main className='flex flex-col gap-5 pb-10'>
         <section className='w-full lg:h-[30rem] bg-black/70 flex flex-col lg:flex-row gap-5 px-4 lg:px-6 xl:px-20 py-5'>

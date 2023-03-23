@@ -4,12 +4,11 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { FaTimes, FaSearch, FaBars } from 'react-icons/fa';
+import Search from './search';
 
 const Navbar = () => {
   const [showMenu, setShowMenu] = React.useState<boolean>(false);
   const [showSearchBar, setShowSearchBar] = React.useState<boolean>(false);
-
-  const isPath = useRouter().asPath === '/';
 
   const handleState = () => {
     setShowMenu((prev) => !prev);
@@ -19,138 +18,118 @@ const Navbar = () => {
   };
 
   return (
-    <header
-      className={`w-full px-6 py-5 flex items-center gap-20 justify-between  text-white ${
-        !isPath ? 'bg-gray-600' : 'bg-black/60'
-      }`}
-    >
-      {/* Logo & Search Bar */}
-      <div className='w-fit lg:w-full flex items-center gap-5'>
-        {/* Logo */}
+    <header className='bg-black text-white flex items-center py-2 justify-between lg:flex-row gap-5 px-4 lg:px-6 xl:px-20'>
+      <nav className='flex items-center gap-5'>
         <Link href='/'>
-          <span className='text-3xl font-bold'>
-            <Image
-              src='/logo.png'
-              width={1000}
-              height={1000}
-              className='w-16'
-              alt=''
-            />
-          </span>
+          <Image
+            src='/logo.png'
+            width={1000}
+            height={1000}
+            className='w-16'
+            alt=''
+          />
         </Link>
-        {/* Search Bar */}
-        <div
-          className={`w-full lg:bg-slate-500/70 rounded-md relative px-4 py-1 lg:max-w-5xl group: flex items-center ${
-            showSearchBar ? 'bg-transparent' : ''
-          }`}
-        >
-          <input
-            type='text'
-            name='search'
-            className={` w-full ${
-              showSearchBar
-                ? 'block px-5 outline-none py-10 h-10 absolute top-0 left-0 bg-black'
-                : 'bg-transparent hidden lg:block outline-none px-4 py-2'
-            }`}
-            placeholder='Search for movies, tv shows and people...'
-          />
 
-          {/* {filteredWord?.length && (
-            <ul className='bg-white text-black absolute top-[3.4rem] w-full right-0 h-[10rem] rounded-md'>
-              {filteredWord?.map((item, index) => (
-                <li
-                  key={index}
-                  className={`flex gap-2 items-center py-1 hover:bg-blue-200 w-full rounded px-1 active:bg-blue-400 cursor-pointer`}
-                >
-                  <Image
-                    width={100}
-                    height={100}
-                    src={item?.image}
-                    className={`w-14 h-14 rounded-md object-cover object-center`}
-                    alt=''
-                  />
-                  <div className={` text-sm`}>
-                    <span className={`font-bold`}>{item?.title}</span>
-                    <p className={`text-sm`}>{item?.description}</p>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          )} */}
-          <FaSearch
-            onClick={handleStateSearch}
-            className='text-2xl cursor-pointer'
-          />
-          {showSearchBar && (
-            <FaTimes
-              onClick={handleStateSearch}
-              className='text-2xl z-[200] absolute right-10 cursor-pointer'
-            />
-          )}
-        </div>
-      </div>
-
-      {/* Desktop Menu */}
-      <nav className='w-full hidden md:flex items-center gap-1 xl:gap-10 font-medium'>
-        <ul className='flex items-center gap-5'>
-          <li>
-            <Link href='/categories/movies'>Movies</Link>
-          </li>
-          <li>
-            <Link href='/categories/anime'>Anime</Link>
-          </li>
-          <li>
-            <Link href='/categories'>Categories</Link>
-          </li>
-          <li>
-            <Link href='/contact'>Contact</Link>
-          </li>
-        </ul>
-
-        <ul className='flex items-center gap-5'>
-          <li className='rounded-md bg-white text-black px-4 py-2'>
-            <Link href='/write-with-us'>Write with us</Link>
-          </li>
+        <ul className=' hidden sm:flex items-center gap-5'>
+          <Link className='rounded-sm hover:bg-slate-500/60 px-2 py-1' href='/'>
+            <li>Home</li>
+          </Link>
+          <Link
+            className='rounded-sm hover:bg-slate-500/60 px-2 py-1'
+            href='/categories'
+          >
+            <li>Categories</li>
+          </Link>
+      
+            <li>
+           
+              <a className='rounded-sm hover:bg-slate-500/60 px-2 py-1' href='mailto:andyblog@gmail.com'>Contact</a>
+            </li>
         </ul>
       </nav>
 
-      {/* Button */}
-      <button
-        onClick={handleState}
-        className='w-30 md:hidden'
-        type='button'
-        title='mobile-menu'
-      >
-        <span className='w-full inline-flex flex-col gap-1'>
-          <span className='block w-full h-0.5 bg-gray-200 group-hover:bg-opacity-[0.4]'></span>
-          <span className='block w-full h-0.5 bg-gray-200 group-hover:bg-opacity-[0.4]'></span>
-          <span className='block w-full h-0.5 bg-gray-200 group-hover:bg-opacity-[0.4]'></span>
-        </span>
-        <span>Menu</span>
-      </button>
+      <div className='flex-1'>
+        <Search />
+      </div>
 
-      {/* Mobile menu */}
-      {showMenu && (
-        <nav className='md:hidden absolute w-full top-20 right-0'>
-          <ul className='bg-slate-900 w-full py-10 px-2 text-xl font-medium flex flex-col gap-2'>
-            <li className='hover:rounded-md hover:bg-white hover:text-black px-4 py-2'>
-              Movies
-            </li>
-            <li className='hover:rounded-md hover:bg-white hover:text-black px-4 py-2'>
-              Series
-            </li>
-            <li className='hover:rounded-md hover:bg-white hover:text-black px-4 py-2'>
-              Anime
-            </li>
-            <li className='hover:rounded-md hover:bg-white hover:text-black px-4 py-2'>
-              Contact
-            </li>
-            <li className='rounded-md bg-white text-black px-4 py-2 hover:bg-blue-700 hover:text-white'>
-              Write with us
-            </li>
-          </ul>
-        </nav>
-      )}
+      <div className='m-0 p-0 relative'>
+        <button
+          className='rounded-sm hover:bg-slate-500/60 p-2.5'
+          title='Show menu'
+          type='button'
+          onClick={handleState}
+        >
+          {showMenu ? <FaTimes className='' /> : <FaBars className='' />}
+        </button>
+        {showMenu && (
+          <nav className='absolute top-11 sm:top-11 right-0 m-0 p-0 sm:-right-0 z-[10] text-black'>
+            <ul className='w-screen sm:w-full rounded-sm px-10 py-2 bg-slate-500 text-left flex flex-col justify-start gap-2'>
+              <Link
+                className='block sm:hidden w-full rounded-sm hover:bg-white/60 px-2 py-1'
+                href='/'
+              >
+                <li>Home</li>
+              </Link>
+              <Link
+                className='block sm:hidden w-full rounded-sm hover:bg-white/60 px-2 py-1'
+                href='/categories'
+              >
+                <li>Categories</li>
+              </Link>
+              <Link
+                className='block sm:hidden w-full rounded-sm hover:bg-white/60 px-2 py-1'
+                href='/contact'
+              >
+                <li>
+                  <a href='mailto:andyblog@gmail.com'>Contact</a>
+                </li>
+              </Link>
+              <Link
+                className='w-full rounded-sm hover:bg-white/60 px-2 py-1'
+                href='/categories/anime'
+              >
+                <li>Anime</li>
+              </Link>
+              <Link
+                className='w-full rounded-sm hover:bg-white/60 px-2 py-1'
+                href='/categories/life'
+              >
+                <li>Life</li>
+              </Link>
+              <Link
+                className='w-full rounded-sm hover:bg-white/60 px-2 py-1'
+                href='/categories/business'
+              >
+                <li>Business</li>
+              </Link>
+              <Link
+                className='w-full rounded-sm hover:bg-white/60 px-2 py-1'
+                href='/categories/movies'
+              >
+                <li>Movies</li>
+              </Link>
+              <Link
+                className='w-full rounded-sm hover:bg-white/60 px-2 py-1'
+                href='/categories/how-to'
+              >
+                <li>How-to</li>
+              </Link>
+              <Link
+                className='w-full rounded-sm hover:bg-white/60 px-2 py-1'
+                href='/categories/top-10'
+              >
+                <li>Top 10</li>
+              </Link>
+              <Link
+                className='w-full rounded-sm hover:bg-white/60 px-2 py-1'
+                href='/categories/others'
+              >
+                <li>Others</li>
+              </Link>
+            </ul>
+          </nav>
+        )}
+      </div>
     </header>
   );
 };

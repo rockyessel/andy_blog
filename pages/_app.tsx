@@ -6,12 +6,12 @@ import NextNProgress from 'nextjs-progressbar';
 import { useRouter } from 'next/router';
 
 const App = ({ Component, pageProps }: AppProps) => {
-  const isPath = useRouter().asPath === '/';
+
 
   return (
     <React.Fragment>
       <NextNProgress color={'#ff5277'} />
-      {!isPath && <Navbar />}
+      <Navbar />
       <Component {...pageProps} />
       <Footer />
     </React.Fragment>

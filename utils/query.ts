@@ -88,6 +88,21 @@ export const AllPostData = async () => {
   return result;
 };
 
+export const SearchData = async () => {
+  const query = `*[_type == 'post'][]{
+    title,
+    description,
+  "image": mainImage.asset->url,
+  slug{
+  current,
+  }
+}`;
+
+  const result = await client.fetch(query);
+
+  return result;
+};
+
 export const AllTopics = async () => {
   const query = `*[_type == 'topics']`;
 
